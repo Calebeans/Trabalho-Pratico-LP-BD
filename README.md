@@ -1,1 +1,1 @@
-# Trabalho-Pr-tico-LP-BD
+# Trabalho-Pratico-LP-BD
