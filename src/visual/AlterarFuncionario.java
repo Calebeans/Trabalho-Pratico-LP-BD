@@ -10,10 +10,12 @@ public class AlterarFuncionario extends javax.swing.JFrame {
 
     private Funcionario funcionario;
     private DAOFuncionario daoFuncionario = new DAOFuncionario();
+    private ConsultaFuncionario consulta;
     
-    public AlterarFuncionario(Funcionario funcionario) {
+    public AlterarFuncionario(Funcionario funcionario, ConsultaFuncionario consulta) {
         this();
         this.funcionario = funcionario;
+        this.consulta = consulta;
         preencherCampos();
     }
     
@@ -54,7 +56,7 @@ public class AlterarFuncionario extends javax.swing.JFrame {
         campoDataNascimento = new javax.swing.JTextField();
         labelSalario = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         labelUf.setText("UF");
 
@@ -88,6 +90,11 @@ public class AlterarFuncionario extends javax.swing.JFrame {
         comboTipoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Comum", "Administrador" }));
 
         botaoCancelar.setText("Cancelar");
+        botaoCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCancelarActionPerformed(evt);
+            }
+        });
 
         labelDataNascimento.setText("Data Nascimento");
 
@@ -205,7 +212,7 @@ public class AlterarFuncionario extends javax.swing.JFrame {
                 .addComponent(labelTipoUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -237,9 +244,8 @@ public class AlterarFuncionario extends javax.swing.JFrame {
     }
     
     private void botaoAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlterarActionPerformed
-        Funcionario funcionario = new Funcionario();
         boolean inserir = true;
-
+        
         funcionario.setNome(campoNome.getText());
         funcionario.setCpf(campoCpf.getText());
         funcionario.setTelefone(campoTelefone.getText());
@@ -284,11 +290,19 @@ public class AlterarFuncionario extends javax.swing.JFrame {
         } else {
             funcionario.setTipoUsuario('A');
         } 
-
+        
         if(inserir) {           
-            daoFuncionario.alterar(funcionario);
+            if(daoFuncionario.alterar(funcionario)) {
+                consulta.setFocusable(true);
+                consulta.atualizarTabela();
+                this.dispose();
+            }           
         }
     }//GEN-LAST:event_botaoAlterarActionPerformed
+
+    private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botaoCancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAlterar;

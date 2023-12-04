@@ -29,6 +29,7 @@ public class ConsultaFuncionario extends javax.swing.JFrame {
         botaoAlterar = new javax.swing.JButton();
         botaoExcluir = new javax.swing.JButton();
         botaoConsultarNome = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,6 +74,13 @@ public class ConsultaFuncionario extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,6 +91,8 @@ public class ConsultaFuncionario extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(botaoAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(botaoExcluir))
@@ -110,7 +120,8 @@ public class ConsultaFuncionario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoAlterar)
-                    .addComponent(botaoExcluir))
+                    .addComponent(botaoExcluir)
+                    .addComponent(jButton1))
                 .addGap(7, 7, 7))
         );
 
@@ -149,10 +160,14 @@ public class ConsultaFuncionario extends javax.swing.JFrame {
         funcionario.setRua((String) tabelaFuncionarios.getValueAt(linha, 12));
         funcionario.setNumero((Integer) tabelaFuncionarios.getValueAt(linha, 13));
         
-        new AlterarFuncionario(funcionario).setVisible(true);
+        new AlterarFuncionario(funcionario, this).setVisible(true);   
     }//GEN-LAST:event_botaoAlterarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
     
-    private void atualizarTabela() {
+    public void atualizarTabela() {
         List<Funcionario> lista = daoFuncionario.consultarPorNome(campoNome.getText());
         DefaultTableModel model = (DefaultTableModel)tabelaFuncionarios.getModel();
         model.setNumRows(0);
@@ -170,6 +185,7 @@ public class ConsultaFuncionario extends javax.swing.JFrame {
     private javax.swing.JButton botaoConsultarNome;
     private javax.swing.JButton botaoExcluir;
     private javax.swing.JTextField campoNome;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelNome;
     private javax.swing.JTable tabelaFuncionarios;

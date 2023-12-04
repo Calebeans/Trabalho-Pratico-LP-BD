@@ -115,7 +115,6 @@ public class DAOFuncionario {
                     + "data_nascimento = ?, salario = ?, uf = ?, cep = ?, cidade = ?,"
                     + "rua = ?, numero = ?, usuario = ?, senha = ?, tipo_usuario = ? where id = ?";
             PreparedStatement ps = Conexao.getConexao().prepareStatement(sql);
-            
             // Informações Pessoais
             ps.setString(1, funcionario.getNome());
             ps.setString(2, funcionario.getCpf());
@@ -149,6 +148,7 @@ public class DAOFuncionario {
             }                       
         } catch(Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro");
+            System.out.println("SQLException " + ex.getMessage());
             return false;
         }
     }
