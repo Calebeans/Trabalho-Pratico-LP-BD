@@ -8,10 +8,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import modelo.Fornecedor;
 
-/**
- *
- * @author Henrique
- */
 public class DAOFornecedor {
 
     public boolean incluir(Fornecedor fornecedor) {
@@ -43,6 +39,36 @@ public class DAOFornecedor {
             System.out.println("SQLException " + ex.getMessage());
             return false;
         }
+    }
+    
+    public Fornecedor consultarPorId(int id) {
+        Fornecedor fornecedor = null;
+        try {
+            String sql = "select * from fornecedor where id = ?";
+            PreparedStatement ps = Conexao.getConexao().prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()) {
+                fornecedor = new Fornecedor();
+                // Informações do fornecedor
+                fornecedor.setId(rs.getInt("id"));
+                fornecedor.setNome(rs.getString("nome"));
+                fornecedor.setTelefone(rs.getString("telefone"));
+                fornecedor.setCnpj(rs.getString("cnpj"));
+                
+                // Endereço
+                fornecedor.setUf(rs.getString("uf"));
+                fornecedor.setCep(rs.getString("cep"));
+                fornecedor.setCidade(rs.getString("cidade"));
+                fornecedor.setRua(rs.getString("rua"));
+                fornecedor.setNumero(rs.getInt("numero"));
+                return fornecedor;
+            }
+        } catch(Exception ex) {
+            System.out.println("SQLException " + ex.getMessage());
+        }
+        return fornecedor;
     }
 
     public List<Fornecedor> consultarPorNome(String nome) {
