@@ -117,4 +117,28 @@ public class DAOProduto {
             return false;
         }      
     }
+    
+    public boolean incluir(Produto produto) {
+        try {
+            
+            String sql = "insert into produto(nome, preco, estoque, id_unidade) values (?, ?, ?, ?)";
+            PreparedStatement ps = Conexao.getConexao().prepareStatement(sql);
+            
+            ps.setString(1, produto.getNome());
+            ps.setDouble(2, produto.getPreco());
+            ps.setInt(3, produto.getEstoque());
+            ps.setInt(4, produto.getUnidade().getId());           
+            
+            if (ps.executeUpdate() > 0) {
+                JOptionPane.showMessageDialog(null, "Produto criado com sucesso");
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro");
+                return false;
+            }
+        } catch(Exception ex) {
+            System.out.println("SQLException " + ex.getMessage());
+            return false;
+        }
+    }
 }
