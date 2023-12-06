@@ -26,11 +26,11 @@ public class DAOCliente {
             ps.setDate(4, new java.sql.Date(cliente.getData_nascimento().getTime()));
 
             // Endereço
-            ps.setString(6, cliente.getUf());
-            ps.setString(7, cliente.getCep());
-            ps.setString(8, cliente.getCidade());
-            ps.setString(9, cliente.getRua());
-            ps.setInt(10, cliente.getNumero());
+            ps.setString(5, cliente.getUf());
+            ps.setString(6, cliente.getCep());
+            ps.setString(7, cliente.getCidade());
+            ps.setString(8, cliente.getRua());
+            ps.setInt(9, cliente.getNumero());
 
             if (ps.executeUpdate() > 0) {
                 JOptionPane.showMessageDialog(null, "Cliente registrado com sucesso!");
@@ -111,14 +111,14 @@ public class DAOCliente {
             ps.setDate(4, new java.sql.Date(cliente.getData_nascimento().getTime()));
 
             // Endereço
-            ps.setString(6, cliente.getUf());
-            ps.setString(7, cliente.getCep());
-            ps.setString(8, cliente.getCidade());
-            ps.setString(9, cliente.getRua());
-            ps.setInt(10, cliente.getNumero());
+            ps.setString(5, cliente.getUf());
+            ps.setString(6, cliente.getCep());
+            ps.setString(7, cliente.getCidade());
+            ps.setString(8, cliente.getRua());
+            ps.setInt(9, cliente.getNumero());
 
             // Where
-            ps.setInt(14, cliente.getId());
+            ps.setInt(10, cliente.getId());
 
             if (ps.executeUpdate() > 0) {
                 JOptionPane.showMessageDialog(null, "Cliente alterado com sucesso");

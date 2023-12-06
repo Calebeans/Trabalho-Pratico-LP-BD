@@ -293,7 +293,6 @@ public class AlterarFuncionario extends javax.swing.JFrame {
 
         if (inserir) {
             if (daoFuncionario.alterar(funcionario)) {
-                consulta.setFocusable(true);
                 consulta.atualizarTabela();
                 this.dispose();
             }

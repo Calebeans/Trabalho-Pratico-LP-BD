@@ -209,6 +209,10 @@ public class CadastroCliente extends javax.swing.JFrame {
             campoNumero.requestFocus();
             inserir = false;
         }
+        if(inserir) {
+            daoCliente.incluir(cliente);
+            this.dispose();
+        }
     }//GEN-LAST:event_botaoInserirActionPerformed
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed

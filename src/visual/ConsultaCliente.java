@@ -150,11 +150,11 @@ public class ConsultaCliente extends javax.swing.JFrame {
         cliente.setCpf((String) tabelaClientes.getValueAt(linha, 2));
         cliente.setTelefone((String) tabelaClientes.getValueAt(linha, 3));
         cliente.setData_nascimento((Date) tabelaClientes.getValueAt(linha, 4));
-        cliente.setUf((String) tabelaClientes.getValueAt(linha, 9));
-        cliente.setCep((String) tabelaClientes.getValueAt(linha, 10));
-        cliente.setCidade((String) tabelaClientes.getValueAt(linha, 11));
-        cliente.setRua((String) tabelaClientes.getValueAt(linha, 12));
-        cliente.setNumero((Integer) tabelaClientes.getValueAt(linha, 13));
+        cliente.setUf((String) tabelaClientes.getValueAt(linha, 5));
+        cliente.setCep((String) tabelaClientes.getValueAt(linha, 6));
+        cliente.setCidade((String) tabelaClientes.getValueAt(linha, 7));
+        cliente.setRua((String) tabelaClientes.getValueAt(linha, 8));
+        cliente.setNumero((Integer) tabelaClientes.getValueAt(linha, 9));
 
         new AlterarCliente(cliente, this).setVisible(true);
     }//GEN-LAST:event_botaoAlterarActionPerformed
@@ -173,7 +173,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
     }
     
     public static void main(String args[]) {
-        new ConsultaFuncionario().setVisible(true);
+        new ConsultaCliente().setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

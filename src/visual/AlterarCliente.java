@@ -212,6 +212,11 @@ public class AlterarCliente extends javax.swing.JFrame {
             campoNumero.requestFocus();
             inserir = false;
         }
+        if(inserir) {
+            daoCliente.alterar(cliente);
+            consulta.atualizarTabela();
+            this.dispose();
+        }
     }//GEN-LAST:event_botaoAlterarActionPerformed
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
