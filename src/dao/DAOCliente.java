@@ -8,10 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Henrique
- */
 public class DAOCliente {
 
     public boolean incluir(Cliente cliente) {
