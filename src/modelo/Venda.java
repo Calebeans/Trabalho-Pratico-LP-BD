@@ -5,6 +5,8 @@
  */
 package modelo;
 
+import java.util.Date;
+
 /**
  *
  * @author Calebe
@@ -13,7 +15,8 @@ public class Venda {
     private int id;
     private double valor;
     private Funcionario funcionario;
-    //Cliente cliente;
+    private Date data_venda;
+    Cliente cliente;
 
     public int getId() {
         return id;
@@ -39,13 +42,21 @@ public class Venda {
         this.funcionario = funcionario;
     }
     
-//    public Cliente getCliente() {
-//        return cliente;
-//    }
-//
-//    public void setCliente(Cliente cliente) {
-//        this.cliente = cliente;
-//    }
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Date getData_venda() {
+        return data_venda;
+    }
+
+    public void setData_venda(Date data_venda) {
+        this.data_venda = data_venda;
+    }
     
     
 }
