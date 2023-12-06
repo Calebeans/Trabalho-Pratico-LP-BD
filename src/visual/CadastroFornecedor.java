@@ -3,6 +3,7 @@ package visual;
 import dao.DAOFornecedor;
 import javax.swing.JOptionPane;
 import modelo.Fornecedor;
+
 /**
  *
  * @author Henrique
@@ -10,11 +11,11 @@ import modelo.Fornecedor;
 public class CadastroFornecedor extends javax.swing.JFrame {
 
     private DAOFornecedor daoFornecedor = new DAOFornecedor();
-    
+
     public CadastroFornecedor() {
         initComponents();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -175,7 +176,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         fornecedor.setNome(campoNome.getText());
         fornecedor.setTelefone(campoTelefone.getText());
         fornecedor.setCnpj(campoCnpj.getText());
-        
+
         fornecedor.setUf(campoUf.getText());
         fornecedor.setCep(campoCep.getText());
         fornecedor.setCidade(campoCidade.getText());
@@ -183,13 +184,15 @@ public class CadastroFornecedor extends javax.swing.JFrame {
 
         try {
             fornecedor.setNumero(Integer.parseInt(campoNumero.getText()));
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro no número da casa!");
             campoNumero.requestFocus();
             inserir = false;
         }
-        if(inserir) {
-            daoFornecedor.incluir(fornecedor);
+        if (inserir) {
+            if (daoFornecedor.incluir(fornecedor)) {
+                limparCampos();
+            }
         }
     }//GEN-LAST:event_botaoInserirActionPerformed
 
@@ -200,6 +203,17 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     private void campoCnpjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCnpjActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoCnpjActionPerformed
+
+    private void limparCampos() {
+        campoNome.setText("");
+        campoTelefone.setText("");
+        campoCnpj.setText("");
+        campoUf.setText("");
+        campoCep.setText("");
+        campoCidade.setText("");
+        campoRua.setText("");
+        campoNumero.setText("");
+    }
 
     /**
      * @param args the command line arguments

@@ -6,7 +6,6 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import modelo.Cliente;
 
-
 public class CadastroCliente extends javax.swing.JFrame {
 
     private DAOCliente daoCliente = new DAOCliente();
@@ -202,15 +201,29 @@ public class CadastroCliente extends javax.swing.JFrame {
             campoNumero.requestFocus();
             inserir = false;
         }
-        if(inserir) {
-            daoCliente.incluir(cliente);
-            this.dispose();
+        if (inserir) {
+            if(daoCliente.incluir(cliente))
+            {
+                limparCampos();
+            }
         }
     }//GEN-LAST:event_botaoInserirActionPerformed
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
+
+    private void limparCampos() {
+        campoNome.setText("");
+        campoCpf.setText("");
+        campoTelefone.setText("");
+        campoDataNascimento.setText("");
+        campoUf.setText("");
+        campoCep.setText("");
+        campoCidade.setText("");
+        campoRua.setText("");
+        campoNumero.setText("");
+    }
 
     /**
      * @param args the command line arguments
