@@ -110,6 +110,37 @@ public class DAOCliente {
         return cliente;
     }
 
+    public List<Cliente> consultarTodos(String nome) {
+        List<Cliente> lista = new ArrayList<>();
+        try {
+            String sql = "select * from cliente";
+            ResultSet rs = Conexao.getConexao().prepareStatement(sql).executeQuery();
+            while (rs.next()) {
+                Cliente cliente = new Cliente();
+
+                // Informações do cliente
+                cliente.setId(rs.getInt("id"));
+                cliente.setNome(rs.getString("nome"));
+                cliente.setCpf(rs.getString("cpf"));
+                cliente.setTelefone(rs.getString("telefone"));
+                cliente.setData_nascimento(rs.getDate("data_nascimento"));
+
+                // Endereço
+                cliente.setUf(rs.getString("uf"));
+                cliente.setCep(rs.getString("cep"));
+                cliente.setCidade(rs.getString("cidade"));
+                cliente.setRua(rs.getString("rua"));
+                cliente.setNumero(rs.getInt("numero"));
+
+                lista.add(cliente);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("SQLException " + ex.getMessage());
+        }
+        return lista;
+    }
+
     public boolean deletar(int id) {
         try {
             String sql = "delete from cliente where id = ?";
