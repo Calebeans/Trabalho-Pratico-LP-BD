@@ -188,6 +188,9 @@ public class CadastroFornecedor extends javax.swing.JFrame {
             campoNumero.requestFocus();
             inserir = false;
         }
+        if(inserir) {
+            daoFornecedor.incluir(fornecedor);
+        }
     }//GEN-LAST:event_botaoInserirActionPerformed
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed

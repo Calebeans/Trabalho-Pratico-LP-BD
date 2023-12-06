@@ -16,7 +16,7 @@ public class DAOFornecedor {
 
     public boolean incluir(Fornecedor fornecedor) {
         try {
-            String sql = "insert into fornecedor (nome, telefone, cnpj, uf, cep, cidade, rua, numero) values (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+            String sql = "insert into fornecedor (nome, telefone, cnpj, uf, cep, cidade, rua, numero) values (?, ?, ?, ?, ?, ?, ?, ?);";
             PreparedStatement ps = Conexao.getConexao().prepareStatement(sql);
 
             // Informações do fornecedor
@@ -25,11 +25,11 @@ public class DAOFornecedor {
             ps.setString(3, fornecedor.getCnpj());
 
             // Endereço
-            ps.setString(6, fornecedor.getUf());
-            ps.setString(7, fornecedor.getCep());
-            ps.setString(8, fornecedor.getCidade());
-            ps.setString(9, fornecedor.getRua());
-            ps.setInt(10, fornecedor.getNumero());
+            ps.setString(4, fornecedor.getUf());
+            ps.setString(5, fornecedor.getCep());
+            ps.setString(6, fornecedor.getCidade());
+            ps.setString(7, fornecedor.getRua());
+            ps.setInt(8, fornecedor.getNumero());
 
             if (ps.executeUpdate() > 0) {
                 JOptionPane.showMessageDialog(null, "fornecedor registrado com sucesso!");
@@ -108,14 +108,14 @@ public class DAOFornecedor {
             ps.setString(3, fornecedor.getCnpj());
 
             // Endereço
-            ps.setString(6, fornecedor.getUf());
-            ps.setString(7, fornecedor.getCep());
-            ps.setString(8, fornecedor.getCidade());
-            ps.setString(9, fornecedor.getRua());
-            ps.setInt(10, fornecedor.getNumero());
+            ps.setString(4, fornecedor.getUf());
+            ps.setString(5, fornecedor.getCep());
+            ps.setString(6, fornecedor.getCidade());
+            ps.setString(7, fornecedor.getRua());
+            ps.setInt(8, fornecedor.getNumero());
 
             // Where
-            ps.setInt(14, fornecedor.getId());
+            ps.setInt(9, fornecedor.getId());
 
             if (ps.executeUpdate() > 0) {
                 JOptionPane.showMessageDialog(null, "Fornecedor alterado com sucesso");
