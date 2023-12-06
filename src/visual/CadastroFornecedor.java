@@ -1,13 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package visual;
 
 import dao.DAOFornecedor;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashSet;
 import javax.swing.JOptionPane;
 import modelo.Fornecedor;
 /**
