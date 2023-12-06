@@ -11,16 +11,16 @@ public class AlterarFuncionario extends javax.swing.JFrame {
     private Funcionario funcionario;
     private DAOFuncionario daoFuncionario = new DAOFuncionario();
     private ConsultaFuncionario consulta;
-    
+
     public AlterarFuncionario(Funcionario funcionario, ConsultaFuncionario consulta) {
         this();
         this.funcionario = funcionario;
         this.consulta = consulta;
         preencherCampos();
     }
-    
+
     public AlterarFuncionario() {
-        initComponents();       
+        initComponents();
     }
 
     @SuppressWarnings("unchecked")
@@ -238,14 +238,14 @@ public class AlterarFuncionario extends javax.swing.JFrame {
         campoNumero.setText(String.valueOf(funcionario.getNumero()));
         campoUsuario.setText(funcionario.getUsuario());
         campoSenha.setText(funcionario.getSenha());
-        if(funcionario.getTipoUsuario() == 'A') {
+        if (funcionario.getTipoUsuario() == 'A') {
             comboTipoUsuario.setSelectedIndex(1);
         }
     }
-    
+
     private void botaoAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlterarActionPerformed
         boolean inserir = true;
-        
+
         funcionario.setNome(campoNome.getText());
         funcionario.setCpf(campoCpf.getText());
         funcionario.setTelefone(campoTelefone.getText());
@@ -254,7 +254,7 @@ public class AlterarFuncionario extends javax.swing.JFrame {
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             Date date = formatter.parse(campoDataNascimento.getText());
             funcionario.setData_nascimento(date);
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro no formato da data de nascimento!");
             campoDataNascimento.requestFocus();
             inserir = false;
@@ -262,7 +262,7 @@ public class AlterarFuncionario extends javax.swing.JFrame {
 
         try {
             funcionario.setSalario(Double.parseDouble(campoSalario.getText()));
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro no salário!");
             campoSalario.requestFocus();
             inserir = false;
@@ -275,7 +275,7 @@ public class AlterarFuncionario extends javax.swing.JFrame {
 
         try {
             funcionario.setNumero(Integer.parseInt(campoNumero.getText()));
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro no número da casa!");
             campoNumero.requestFocus();
             inserir = false;
@@ -283,20 +283,20 @@ public class AlterarFuncionario extends javax.swing.JFrame {
 
         funcionario.setUsuario(campoUsuario.getText());
         funcionario.setSenha(campoSenha.getText());
-        
+
         Object e = comboTipoUsuario.getSelectedItem();
-        if(e.equals("Comum")) {
+        if (e.equals("Comum")) {
             funcionario.setTipoUsuario('C');
         } else {
             funcionario.setTipoUsuario('A');
-        } 
-        
-        if(inserir) {           
-            if(daoFuncionario.alterar(funcionario)) {
+        }
+
+        if (inserir) {
+            if (daoFuncionario.alterar(funcionario)) {
                 consulta.setFocusable(true);
                 consulta.atualizarTabela();
                 this.dispose();
-            }           
+            }
         }
     }//GEN-LAST:event_botaoAlterarActionPerformed
 
