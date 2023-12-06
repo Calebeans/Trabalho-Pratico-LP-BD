@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class DAOProduto {
     
@@ -72,5 +73,48 @@ public class DAOProduto {
             System.out.println("SQLException " + ex.getMessage());
         }        
         return lista;
+    }
+    
+    public boolean alterar(Produto produto) {
+        try {
+            String sql = "update produto set nome = ?, preco = ?, estoque = ?, id_unidade = ? where id = ?";
+            PreparedStatement ps = Conexao.getConexao().prepareStatement(sql);
+            
+            ps.setString(1, produto.getNome());
+            ps.setDouble(2, produto.getPreco());
+            ps.setInt(3, produto.getEstoque());
+            ps.setInt(4, produto.getUnidade().getId());
+            
+            ps.setInt(5, produto.getId());
+            
+            if (ps.executeUpdate() > 0) {
+                JOptionPane.showMessageDialog(null, "Produto alterado com sucesso");
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro");
+                return false;
+            }
+        } catch (Exception ex) {
+            System.out.println("SQLException " + ex.getMessage());
+            return false;
+        }
+    }
+    
+    public boolean deletar(int id) {
+        try {
+            String sql = "delete from produto where id = ?";
+            PreparedStatement ps = Conexao.getConexao().prepareStatement(sql);
+            ps.setInt(1, id);
+            if (ps.executeUpdate() > 0) {
+                JOptionPane.showMessageDialog(null, "Produto excluido com sucesso");
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro");
+                return false;
+            }
+        } catch(Exception ex) {
+            System.out.println("SQLException " + ex.getMessage());
+            return false;
+        }      
     }
 }

@@ -9,7 +9,7 @@ public class Produto {
 
     public Object[] getDadosModel() {
         Object[] retorno = new Object[] { getId(), getNome(), getPreco(), 
-            getEstoque(), getUnidade().getDescricao()};
+            getEstoque(), getUnidade().getId(), getUnidade().getDescricao()};
         return retorno;
     }
     
