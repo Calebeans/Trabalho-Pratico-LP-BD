@@ -10,15 +10,17 @@ public class AlterarFuncionario extends javax.swing.JFrame {
 
     private Funcionario funcionario;
     private DAOFuncionario daoFuncionario = new DAOFuncionario();
-    
-    public AlterarFuncionario(Funcionario funcionario) {
+    private ConsultaFuncionario consulta;
+
+    public AlterarFuncionario(Funcionario funcionario, ConsultaFuncionario consulta) {
         this();
         this.funcionario = funcionario;
+        this.consulta = consulta;
         preencherCampos();
     }
-    
+
     public AlterarFuncionario() {
-        initComponents();       
+        initComponents();
     }
 
     @SuppressWarnings("unchecked")
@@ -54,7 +56,7 @@ public class AlterarFuncionario extends javax.swing.JFrame {
         campoDataNascimento = new javax.swing.JTextField();
         labelSalario = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         labelUf.setText("UF");
 
@@ -88,6 +90,11 @@ public class AlterarFuncionario extends javax.swing.JFrame {
         comboTipoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Comum", "Administrador" }));
 
         botaoCancelar.setText("Cancelar");
+        botaoCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCancelarActionPerformed(evt);
+            }
+        });
 
         labelDataNascimento.setText("Data Nascimento");
 
@@ -205,7 +212,7 @@ public class AlterarFuncionario extends javax.swing.JFrame {
                 .addComponent(labelTipoUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -231,13 +238,12 @@ public class AlterarFuncionario extends javax.swing.JFrame {
         campoNumero.setText(String.valueOf(funcionario.getNumero()));
         campoUsuario.setText(funcionario.getUsuario());
         campoSenha.setText(funcionario.getSenha());
-        if(funcionario.getTipoUsuario() == 'A') {
+        if (funcionario.getTipoUsuario() == 'A') {
             comboTipoUsuario.setSelectedIndex(1);
         }
     }
-    
+
     private void botaoAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlterarActionPerformed
-        Funcionario funcionario = new Funcionario();
         boolean inserir = true;
 
         funcionario.setNome(campoNome.getText());
@@ -248,7 +254,7 @@ public class AlterarFuncionario extends javax.swing.JFrame {
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             Date date = formatter.parse(campoDataNascimento.getText());
             funcionario.setData_nascimento(date);
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro no formato da data de nascimento!");
             campoDataNascimento.requestFocus();
             inserir = false;
@@ -256,7 +262,7 @@ public class AlterarFuncionario extends javax.swing.JFrame {
 
         try {
             funcionario.setSalario(Double.parseDouble(campoSalario.getText()));
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro no salário!");
             campoSalario.requestFocus();
             inserir = false;
@@ -269,7 +275,7 @@ public class AlterarFuncionario extends javax.swing.JFrame {
 
         try {
             funcionario.setNumero(Integer.parseInt(campoNumero.getText()));
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro no número da casa!");
             campoNumero.requestFocus();
             inserir = false;
@@ -277,18 +283,26 @@ public class AlterarFuncionario extends javax.swing.JFrame {
 
         funcionario.setUsuario(campoUsuario.getText());
         funcionario.setSenha(campoSenha.getText());
-        
+
         Object e = comboTipoUsuario.getSelectedItem();
-        if(e.equals("Comum")) {
+        if (e.equals("Comum")) {
             funcionario.setTipoUsuario('C');
         } else {
             funcionario.setTipoUsuario('A');
-        } 
+        }
 
-        if(inserir) {           
-            daoFuncionario.alterar(funcionario);
+        if (inserir) {
+            if (daoFuncionario.alterar(funcionario)) {
+                consulta.setFocusable(true);
+                consulta.atualizarTabela();
+                this.dispose();
+            }
         }
     }//GEN-LAST:event_botaoAlterarActionPerformed
+
+    private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botaoCancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAlterar;
