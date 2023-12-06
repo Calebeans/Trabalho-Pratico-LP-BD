@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package visual;
 
 import dao.DAOCliente;
@@ -10,10 +6,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import modelo.Cliente;
 
-/**
- *
- * @author Henrique
- */
+
 public class CadastroCliente extends javax.swing.JFrame {
 
     private DAOCliente daoCliente = new DAOCliente();

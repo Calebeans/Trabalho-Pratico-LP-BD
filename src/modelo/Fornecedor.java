@@ -1,11 +1,5 @@
 package modelo;
 
-import java.util.Date;
-
-/**
- *
- * @author Henrique
- */
 public class Fornecedor {
 
     private int id;

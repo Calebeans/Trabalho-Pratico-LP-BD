@@ -147,7 +147,6 @@ public class DAOFuncionario {
                 return false;
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Erro");
             System.out.println("SQLException " + ex.getMessage());
             return false;
         }
