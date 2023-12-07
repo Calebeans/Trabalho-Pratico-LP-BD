@@ -66,9 +66,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="campoUsuario">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="usuario"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelSenha">
       <Properties>
@@ -76,9 +73,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="campoSenha">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="senha"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="botaoEntrar">
       <Properties>

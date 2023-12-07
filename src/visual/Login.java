@@ -27,11 +27,7 @@ public class Login extends javax.swing.JFrame {
 
         labelUsuario.setText("Usuário");
 
-        campoUsuario.setText("usuario");
-
         labelSenha.setText("Senha");
-
-        campoSenha.setText("senha");
 
         botaoEntrar.setText("Entrar");
         botaoEntrar.addActionListener(new java.awt.event.ActionListener() {
