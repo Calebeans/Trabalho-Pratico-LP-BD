@@ -36,6 +36,8 @@ create table funcionario (
 	numero int
 );
 
+insert into funcionario(usuario, senha, tipo_usuario) values('admin', 'admin', 'A');
+
 create table venda(
 	id serial not null primary key,
 	valor decimal(18,4),
