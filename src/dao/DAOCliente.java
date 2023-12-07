@@ -72,6 +72,37 @@ public class DAOCliente {
         }
         return lista;
     }
+    
+    public List<Cliente> consultarPorCpf(String cpf) {
+        List<Cliente> lista = new ArrayList<>();
+        try {
+            String sql = "select * from cliente where cpf like '%" + cpf + "%'";
+            ResultSet rs = Conexao.getConexao().prepareStatement(sql).executeQuery();
+            while (rs.next()) {
+                Cliente cliente = new Cliente();
+
+                // Informações Pessoais
+                cliente.setId(rs.getInt("id"));
+                cliente.setNome(rs.getString("nome"));
+                cliente.setCpf(rs.getString("cpf"));
+                cliente.setTelefone(rs.getString("telefone"));
+                cliente.setData_nascimento(rs.getDate("data_nascimento"));
+
+                // Endereço
+                cliente.setUf(rs.getString("uf"));
+                cliente.setCep(rs.getString("cep"));
+                cliente.setCidade(rs.getString("cidade"));
+                cliente.setRua(rs.getString("rua"));
+                cliente.setNumero(rs.getInt("numero"));
+
+                lista.add(cliente);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("SQLException " + ex.getMessage());
+        }
+        return lista;
+    }
 
     public Cliente consultarPorId(int id) {
         Cliente cliente = null;

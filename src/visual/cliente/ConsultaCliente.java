@@ -8,6 +8,7 @@ import modelo.Cliente;
 
 public class ConsultaCliente extends javax.swing.JFrame {
 
+    private boolean consultarNome = true;
     private DAOCliente daoCliente = new DAOCliente();
     
     public ConsultaCliente() {
@@ -26,6 +27,9 @@ public class ConsultaCliente extends javax.swing.JFrame {
         botaoCancelar = new javax.swing.JButton();
         botaoAlterar = new javax.swing.JButton();
         botaoExcluir = new javax.swing.JButton();
+        labelCpf = new javax.swing.JLabel();
+        campoCpf = new javax.swing.JTextField();
+        botaoConsultarCpf = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -77,6 +81,15 @@ public class ConsultaCliente extends javax.swing.JFrame {
             }
         });
 
+        labelCpf.setText("CPF");
+
+        botaoConsultarCpf.setText("Consultar CPF");
+        botaoConsultarCpf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoConsultarCpfActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,11 +107,18 @@ public class ConsultaCliente extends javax.swing.JFrame {
                         .addComponent(botaoExcluir))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botaoConsultarNome)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(labelNome)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(botaoConsultarNome))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelCpf)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(campoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(botaoConsultarCpf))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -108,9 +128,13 @@ public class ConsultaCliente extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNome)
-                    .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelCpf)
+                    .addComponent(campoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botaoConsultarNome)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoConsultarNome)
+                    .addComponent(botaoConsultarCpf))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(painelTabelaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -125,6 +149,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoConsultarNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConsultarNomeActionPerformed
+        consultarNome = true;
         atualizarTabela();
     }//GEN-LAST:event_botaoConsultarNomeActionPerformed
 
@@ -159,8 +184,18 @@ public class ConsultaCliente extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
+    private void botaoConsultarCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConsultarCpfActionPerformed
+        consultarNome = false;
+        atualizarTabela();
+    }//GEN-LAST:event_botaoConsultarCpfActionPerformed
+
     public void atualizarTabela() {
-        List<Cliente> lista = daoCliente.consultarPorNome(campoNome.getText());
+        List<Cliente> lista;
+        if(consultarNome) {
+            lista = daoCliente.consultarPorNome(campoNome.getText());
+        } else {
+            lista = daoCliente.consultarPorCpf(campoNome.getText());
+        }
         DefaultTableModel model = (DefaultTableModel)tabelaClientes.getModel();
         model.setNumRows(0);
         for(Cliente i : lista) {
@@ -171,9 +206,12 @@ public class ConsultaCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAlterar;
     private javax.swing.JButton botaoCancelar;
+    private javax.swing.JButton botaoConsultarCpf;
     private javax.swing.JButton botaoConsultarNome;
     private javax.swing.JButton botaoExcluir;
+    private javax.swing.JTextField campoCpf;
     private javax.swing.JTextField campoNome;
+    private javax.swing.JLabel labelCpf;
     private javax.swing.JLabel labelNome;
     private javax.swing.JScrollPane painelTabelaClientes;
     private javax.swing.JTable tabelaClientes;

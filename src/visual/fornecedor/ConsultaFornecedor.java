@@ -8,6 +8,7 @@ import modelo.Fornecedor;
 public class ConsultaFornecedor extends javax.swing.JFrame {
 
     DAOFornecedor daoFornecedor = new DAOFornecedor();
+    boolean consultarNome = true;
     
     public ConsultaFornecedor() {
         initComponents();
@@ -25,6 +26,9 @@ public class ConsultaFornecedor extends javax.swing.JFrame {
         botaoCancelar = new javax.swing.JButton();
         botaoAlterar = new javax.swing.JButton();
         botaoExcluir = new javax.swing.JButton();
+        labelCnpj = new javax.swing.JLabel();
+        campoCnpj = new javax.swing.JTextField();
+        botaoConsultarCnpj = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -76,6 +80,15 @@ public class ConsultaFornecedor extends javax.swing.JFrame {
             }
         });
 
+        labelCnpj.setText("CNPJ");
+
+        botaoConsultarCnpj.setText("Consultar CNPJ");
+        botaoConsultarCnpj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoConsultarCnpjActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,11 +106,18 @@ public class ConsultaFornecedor extends javax.swing.JFrame {
                         .addComponent(botaoExcluir))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botaoConsultarNome)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(labelNome)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(botaoConsultarNome))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelCnpj)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(campoCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(botaoConsultarCnpj))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -107,9 +127,13 @@ public class ConsultaFornecedor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNome)
-                    .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelCnpj)
+                    .addComponent(campoCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botaoConsultarNome)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoConsultarNome)
+                    .addComponent(botaoConsultarCnpj))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(painelTabelaFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -124,6 +148,7 @@ public class ConsultaFornecedor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoConsultarNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConsultarNomeActionPerformed
+        consultarNome = true;
         atualizarTabela();
     }//GEN-LAST:event_botaoConsultarNomeActionPerformed
 
@@ -158,9 +183,19 @@ public class ConsultaFornecedor extends javax.swing.JFrame {
         daoFornecedor.deletar(id);
         atualizarTabela();
     }//GEN-LAST:event_botaoExcluirActionPerformed
+
+    private void botaoConsultarCnpjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConsultarCnpjActionPerformed
+        consultarNome = false;
+        atualizarTabela();
+    }//GEN-LAST:event_botaoConsultarCnpjActionPerformed
     
     public void atualizarTabela() {
-        List<Fornecedor> lista = daoFornecedor.consultarPorNome(campoNome.getText());
+        List<Fornecedor> lista;
+        if(consultarNome) {
+            lista = daoFornecedor.consultarPorNome(campoNome.getText());
+        } else  {
+            lista = daoFornecedor.consultarPorCnpj(campoCnpj.getText());
+        }
         DefaultTableModel model = (DefaultTableModel) tabelaFornecedores.getModel();
         model.setNumRows(0);
         for (Fornecedor i : lista) {
@@ -171,9 +206,12 @@ public class ConsultaFornecedor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAlterar;
     private javax.swing.JButton botaoCancelar;
+    private javax.swing.JButton botaoConsultarCnpj;
     private javax.swing.JButton botaoConsultarNome;
     private javax.swing.JButton botaoExcluir;
+    private javax.swing.JTextField campoCnpj;
     private javax.swing.JTextField campoNome;
+    private javax.swing.JLabel labelCnpj;
     private javax.swing.JLabel labelNome;
     private javax.swing.JScrollPane painelTabelaFornecedor;
     private javax.swing.JTable tabelaFornecedores;

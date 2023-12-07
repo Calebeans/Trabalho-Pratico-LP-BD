@@ -101,6 +101,36 @@ public class DAOFornecedor {
         return lista;
     }
     
+    public List<Fornecedor> consultarPorCnpj(String cnpj) {
+        List<Fornecedor> lista = new ArrayList<>();
+        try {
+            String sql = "select * from fornecedor where cnpj like '%" + cnpj + "%'";
+            ResultSet rs = Conexao.getConexao().prepareStatement(sql).executeQuery();
+            while (rs.next()) {
+                Fornecedor fornecedor = new Fornecedor();
+
+                // Informações do fornecedor
+                fornecedor.setId(rs.getInt("id"));
+                fornecedor.setNome(rs.getString("nome"));
+                fornecedor.setTelefone(rs.getString("telefone"));
+                fornecedor.setCnpj(rs.getString("cnpj"));
+
+                // Endereço
+                fornecedor.setUf(rs.getString("uf"));
+                fornecedor.setCep(rs.getString("cep"));
+                fornecedor.setCidade(rs.getString("cidade"));
+                fornecedor.setRua(rs.getString("rua"));
+                fornecedor.setNumero(rs.getInt("numero"));
+
+                lista.add(fornecedor);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("SQLException " + ex.getMessage());
+        }
+        return lista;
+    }
+    
     public List<Fornecedor> consultarTodos() {
         List<Fornecedor> lista = new ArrayList<>();
         try {

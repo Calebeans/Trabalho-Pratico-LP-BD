@@ -35,14 +35,23 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="botaoExcluir" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="botaoConsultarNome" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="labelNome" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="campoNome" min="-2" pref="250" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="botaoConsultarNome" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="labelCnpj" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="campoCnpj" min="-2" pref="250" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="botaoConsultarCnpj" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -58,9 +67,14 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labelNome" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="campoNome" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelCnpj" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="campoCnpj" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="botaoConsultarNome" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="botaoConsultarNome" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botaoConsultarCnpj" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="painelTabelaFornecedor" pref="387" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -190,6 +204,21 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoExcluirActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelCnpj">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="CNPJ"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="campoCnpj">
+    </Component>
+    <Component class="javax.swing.JButton" name="botaoConsultarCnpj">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Consultar CNPJ"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoConsultarCnpjActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
