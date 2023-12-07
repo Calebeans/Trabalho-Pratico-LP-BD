@@ -1,4 +1,4 @@
-package visual;
+package visual.produto;
 
 import dao.DAOProduto;
 import dao.DAOUnidade;

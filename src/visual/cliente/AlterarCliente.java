@@ -1,4 +1,4 @@
-package visual;
+package visual.cliente;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;

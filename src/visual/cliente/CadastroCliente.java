@@ -1,4 +1,4 @@
-package visual;
+package visual.cliente;
 
 import dao.DAOCliente;
 import java.text.SimpleDateFormat;

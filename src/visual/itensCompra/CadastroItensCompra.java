@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package visual;
+package visual.itensCompra;
 
+import visual.compra.CadastroCompra;
 import javax.swing.JOptionPane;
 import modelo.ItensCompra;
 import dao.DAOItensCompra;
@@ -66,12 +67,6 @@ public class CadastroItensCompra extends javax.swing.JFrame {
         labelProduto.setText("Produto");
 
         labelQuantidade.setText("Quantidade");
-
-        campoQuantidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoQuantidadeActionPerformed(evt);
-            }
-        });
 
         botaoCancelar.setText("Cancelar");
         botaoCancelar.addActionListener(new java.awt.event.ActionListener() {

@@ -25,7 +25,7 @@ public class DAOItensCompra {
             ps.setInt(2, i.getCompra().getId());
             ps.setInt(3, i.getProduto().getId());
             if(ps.executeUpdate() > 0) {
-                JOptionPane.showMessageDialog(null, "Funcionario criado com sucesso");
+                JOptionPane.showMessageDialog(null, "Item compra criado com sucesso");
                 return true;
             } else {
                 JOptionPane.showMessageDialog(null, "Erro");

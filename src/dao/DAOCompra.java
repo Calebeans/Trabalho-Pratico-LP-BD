@@ -25,7 +25,7 @@ public class DAOCompra {
             ps.setDouble(1, compra.getValor());
             ps.setInt(2, compra.getFornecedor().getId());
             if(ps.executeUpdate() > 0) {
-                JOptionPane.showMessageDialog(null, "Funcionario criado com sucesso");
+                JOptionPane.showMessageDialog(null, "Compra criada com sucesso");
                 return true;
             } else {
                 JOptionPane.showMessageDialog(null, "Erro");

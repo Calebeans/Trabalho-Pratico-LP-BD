@@ -4,7 +4,22 @@
  */
 package visual;
 
+import visual.venda.CadastroVenda;
+import visual.compra.CadastroCompra;
+import visual.compra.ConsultarCompra;
+import visual.produto.CadastroProduto;
+import visual.produto.ConsultaProduto;
+import visual.funcionario.CadastroFuncionario;
+import visual.funcionario.ConsultaFuncionario;
+import visual.fornecedor.ConsultaFornecedor;
+import visual.fornecedor.CadastroFornecedor;
+import visual.cliente.CadastroCliente;
 import modelo.Funcionario;
+import visual.itensCompra.ConsultarItensCompra;
+import visual.itensVenda.ConsultaItensVenda;
+import visual.unidade.CadastroUnidade;
+import visual.unidade.ConsultaUnidade;
+import visual.venda.ConsultarVenda;
 
 /**
  *
@@ -44,6 +59,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botaoConsultarCompras = new javax.swing.JButton();
         botaoConsultarFornecedores = new javax.swing.JButton();
         labelConsultarFornecedores = new javax.swing.JLabel();
+        labelConsultarVendas = new javax.swing.JLabel();
+        botaoConsultarVendas = new javax.swing.JButton();
+        labelConsultarItensCompra = new javax.swing.JLabel();
+        botaoConsultarItensCompra = new javax.swing.JButton();
+        labelConsultarItensVenda = new javax.swing.JLabel();
+        botaoConsultarItensVenda = new javax.swing.JButton();
+        labelConsultarUnidades = new javax.swing.JLabel();
+        botaoConsultarUnidades = new javax.swing.JButton();
         painelCadastro = new javax.swing.JPanel();
         labelProduto = new javax.swing.JLabel();
         botaoCadastrarProduto = new javax.swing.JButton();
@@ -98,6 +121,42 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         labelConsultarFornecedores.setText("Fornecedor");
 
+        labelConsultarVendas.setText("Venda");
+
+        botaoConsultarVendas.setText("Consultar Vendas");
+        botaoConsultarVendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoConsultarVendasActionPerformed(evt);
+            }
+        });
+
+        labelConsultarItensCompra.setText("Itens Compra");
+
+        botaoConsultarItensCompra.setText("Consultar Itens Compra");
+        botaoConsultarItensCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoConsultarItensCompraActionPerformed(evt);
+            }
+        });
+
+        labelConsultarItensVenda.setText("Itens Venda");
+
+        botaoConsultarItensVenda.setText("Consultar Itens Venda");
+        botaoConsultarItensVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoConsultarItensVendaActionPerformed(evt);
+            }
+        });
+
+        labelConsultarUnidades.setText("Unidade");
+
+        botaoConsultarUnidades.setText("Consultar Unidades");
+        botaoConsultarUnidades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoConsultarUnidadesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout painelConsultaLayout = new javax.swing.GroupLayout(painelConsulta);
         painelConsulta.setLayout(painelConsultaLayout);
         painelConsultaLayout.setHorizontalGroup(
@@ -105,40 +164,62 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGroup(painelConsultaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(painelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoConsultarFuncionarios)
+                    .addComponent(labelConsultarFuncionarios)
+                    .addComponent(botaoConsultarCompras)
+                    .addComponent(labelConsultarCompras)
+                    .addComponent(labelConsultarVendas)
+                    .addComponent(botaoConsultarVendas)
                     .addComponent(labelConsultarProdutos)
-                    .addComponent(botaoConsultarProdutos)
-                    .addGroup(painelConsultaLayout.createSequentialGroup()
-                        .addGroup(painelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botaoConsultarFuncionarios)
-                            .addComponent(labelConsultarFuncionarios)
-                            .addComponent(botaoConsultarCompras)
-                            .addComponent(labelConsultarCompras))
-                        .addGap(18, 18, 18)
-                        .addGroup(painelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelConsultarFornecedores)
-                            .addComponent(botaoConsultarFornecedores))))
+                    .addComponent(botaoConsultarProdutos))
+                .addGap(18, 18, 18)
+                .addGroup(painelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoConsultarUnidades)
+                    .addComponent(labelConsultarUnidades)
+                    .addComponent(botaoConsultarItensCompra)
+                    .addComponent(labelConsultarItensCompra)
+                    .addComponent(botaoConsultarFornecedores)
+                    .addComponent(labelConsultarFornecedores)
+                    .addComponent(labelConsultarItensVenda)
+                    .addComponent(botaoConsultarItensVenda))
                 .addContainerGap(87, Short.MAX_VALUE))
         );
         painelConsultaLayout.setVerticalGroup(
             painelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelConsultaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelConsultarProdutos)
+                .addGroup(painelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelConsultarProdutos)
+                    .addComponent(labelConsultarUnidades))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoConsultarProdutos)
-                .addGap(18, 18, 18)
-                .addComponent(labelConsultarFuncionarios)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoConsultarFuncionarios)
+                .addGroup(painelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoConsultarProdutos)
+                    .addComponent(botaoConsultarUnidades))
                 .addGap(18, 18, 18)
                 .addGroup(painelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelConsultarCompras)
+                    .addComponent(labelConsultarFuncionarios)
                     .addComponent(labelConsultarFornecedores))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(painelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoConsultarCompras)
+                    .addComponent(botaoConsultarFuncionarios)
                     .addComponent(botaoConsultarFornecedores))
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(painelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelConsultarCompras)
+                    .addComponent(labelConsultarItensCompra))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(painelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoConsultarCompras)
+                    .addComponent(botaoConsultarItensCompra))
+                .addGap(18, 18, 18)
+                .addGroup(painelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelConsultarVendas)
+                    .addComponent(labelConsultarItensVenda))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(painelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoConsultarVendas)
+                    .addComponent(botaoConsultarItensVenda))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         labelProduto.setText("Produto");
@@ -299,7 +380,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoRealizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRealizarVendaActionPerformed
-        new CadastroVenda().setVisible(true);
+        new CadastroVenda(funcionarioLogado).setVisible(true);
     }//GEN-LAST:event_botaoRealizarVendaActionPerformed
 
     private void botaoCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarClienteActionPerformed
@@ -327,7 +408,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoCadastrarProdutoActionPerformed
 
     private void botaoCadastrarUnidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarUnidadeActionPerformed
-        // TODO add your handling code here:
+        new CadastroUnidade().setVisible(true);
     }//GEN-LAST:event_botaoCadastrarUnidadeActionPerformed
 
     private void botaoCadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarFuncionarioActionPerformed
@@ -342,41 +423,24 @@ public class MenuPrincipal extends javax.swing.JFrame {
         new CadastroFornecedor().setVisible(true);
     }//GEN-LAST:event_botaoCadastrarFornecedorActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void botaoConsultarVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConsultarVendasActionPerformed
+        new ConsultarVenda().setVisible(true);
+    }//GEN-LAST:event_botaoConsultarVendasActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuPrincipal().setVisible(true);
-            }
-        });
-    }
+    private void botaoConsultarItensCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConsultarItensCompraActionPerformed
+        new ConsultarItensCompra().setVisible(true);
+    }//GEN-LAST:event_botaoConsultarItensCompraActionPerformed
 
+    private void botaoConsultarItensVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConsultarItensVendaActionPerformed
+        new ConsultaItensVenda().setVisible(true);
+    }//GEN-LAST:event_botaoConsultarItensVendaActionPerformed
+
+    private void botaoConsultarUnidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConsultarUnidadesActionPerformed
+        new ConsultaUnidade().setVisible(true);
+    }//GEN-LAST:event_botaoConsultarUnidadesActionPerformed
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCadastrarCliente;
     private javax.swing.JButton botaoCadastrarCompra;
@@ -387,14 +451,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton botaoConsultarCompras;
     private javax.swing.JButton botaoConsultarFornecedores;
     private javax.swing.JButton botaoConsultarFuncionarios;
+    private javax.swing.JButton botaoConsultarItensCompra;
+    private javax.swing.JButton botaoConsultarItensVenda;
     private javax.swing.JButton botaoConsultarProdutos;
+    private javax.swing.JButton botaoConsultarUnidades;
+    private javax.swing.JButton botaoConsultarVendas;
     private javax.swing.JButton botaoRealizarVenda;
     private javax.swing.JLabel labelCadastroCliente;
     private javax.swing.JLabel labelCompra;
     private javax.swing.JLabel labelConsultarCompras;
     private javax.swing.JLabel labelConsultarFornecedores;
     private javax.swing.JLabel labelConsultarFuncionarios;
+    private javax.swing.JLabel labelConsultarItensCompra;
+    private javax.swing.JLabel labelConsultarItensVenda;
     private javax.swing.JLabel labelConsultarProdutos;
+    private javax.swing.JLabel labelConsultarUnidades;
+    private javax.swing.JLabel labelConsultarVendas;
     private javax.swing.JLabel labelFornecedor;
     private javax.swing.JLabel labelFuncionario;
     private javax.swing.JLabel labelProduto;

@@ -19,10 +19,15 @@ public class Venda {
     Cliente cliente;
     
     public Object[] getDadosModel() {
-        Object[] retorno = new Object[]{getId(), getValor(), getFuncionario(), getData_venda(), getCliente()};
+        Object[] retorno = new Object[]{getId(), getValor(), getData_venda(), getFuncionario(), getCliente()};
         return retorno;
     }
 
+    @Override
+    public String toString() {
+        return id + " - " + data_venda;
+    }
+      
     public int getId() {
         return id;
     }

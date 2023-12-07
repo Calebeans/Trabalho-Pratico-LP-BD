@@ -1,4 +1,4 @@
-package visual;
+package visual.funcionario;
 
 import dao.DAOFuncionario;
 import java.text.SimpleDateFormat;
@@ -6,11 +6,20 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import modelo.Funcionario;
 
-public class CadastroFuncionario extends javax.swing.JFrame {
+public class AlterarFuncionario extends javax.swing.JFrame {
 
+    private Funcionario funcionario;
     private DAOFuncionario daoFuncionario = new DAOFuncionario();
-    
-    public CadastroFuncionario() {
+    private ConsultaFuncionario consulta;
+
+    public AlterarFuncionario(Funcionario funcionario, ConsultaFuncionario consulta) {
+        this();
+        this.funcionario = funcionario;
+        this.consulta = consulta;
+        preencherCampos();
+    }
+
+    public AlterarFuncionario() {
         initComponents();
     }
 
@@ -18,17 +27,6 @@ public class CadastroFuncionario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labelNome = new javax.swing.JLabel();
-        campoNome = new javax.swing.JTextField();
-        labelCpf = new javax.swing.JLabel();
-        campoCpf = new javax.swing.JTextField();
-        labelTelefone = new javax.swing.JLabel();
-        campoTelefone = new javax.swing.JTextField();
-        botaoInserir = new javax.swing.JButton();
-        botaoCancelar = new javax.swing.JButton();
-        labelDataNascimento = new javax.swing.JLabel();
-        campoDataNascimento = new javax.swing.JTextField();
-        labelSalario = new javax.swing.JLabel();
         campoSalario = new javax.swing.JTextField();
         labelUf = new javax.swing.JLabel();
         campoUf = new javax.swing.JTextField();
@@ -40,27 +38,56 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         campoRua = new javax.swing.JTextField();
         labelNumero = new javax.swing.JLabel();
         campoNumero = new javax.swing.JTextField();
+        labelNome = new javax.swing.JLabel();
         labelUsuario = new javax.swing.JLabel();
+        campoNome = new javax.swing.JTextField();
         campoUsuario = new javax.swing.JTextField();
+        labelCpf = new javax.swing.JLabel();
         labelSenha = new javax.swing.JLabel();
+        campoCpf = new javax.swing.JTextField();
         campoSenha = new javax.swing.JTextField();
+        labelTelefone = new javax.swing.JLabel();
         labelTipoUsuario = new javax.swing.JLabel();
+        campoTelefone = new javax.swing.JTextField();
+        botaoAlterar = new javax.swing.JButton();
         comboTipoUsuario = new javax.swing.JComboBox<>();
+        botaoCancelar = new javax.swing.JButton();
+        labelDataNascimento = new javax.swing.JLabel();
+        campoDataNascimento = new javax.swing.JTextField();
+        labelSalario = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        labelUf.setText("UF");
+
+        labelCep.setText("CEP");
+
+        labelCidade.setText("Cidade");
+
+        labelRua.setText("Rua");
+
+        labelNumero.setText("Número");
+
         labelNome.setText("Nome");
+
+        labelUsuario.setText("Usuário");
 
         labelCpf.setText("CPF");
 
+        labelSenha.setText("Senha");
+
         labelTelefone.setText("Telefone");
 
-        botaoInserir.setText("Inserir");
-        botaoInserir.addActionListener(new java.awt.event.ActionListener() {
+        labelTipoUsuario.setText("Tipo Usuário");
+
+        botaoAlterar.setText("Alterar");
+        botaoAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoInserirActionPerformed(evt);
+                botaoAlterarActionPerformed(evt);
             }
         });
+
+        comboTipoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Comum", "Administrador" }));
 
         botaoCancelar.setText("Cancelar");
         botaoCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -73,24 +100,6 @@ public class CadastroFuncionario extends javax.swing.JFrame {
 
         labelSalario.setText("Salario");
 
-        labelUf.setText("UF");
-
-        labelCep.setText("CEP");
-
-        labelCidade.setText("Cidade");
-
-        labelRua.setText("Rua");
-
-        labelNumero.setText("Número");
-
-        labelUsuario.setText("Usuário");
-
-        labelSenha.setText("Senha");
-
-        labelTipoUsuario.setText("Tipo Usuário");
-
-        comboTipoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Comum", "Administrador" }));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,7 +109,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(botaoInserir)
+                        .addComponent(botaoAlterar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(botaoCancelar))
                     .addGroup(layout.createSequentialGroup()
@@ -208,91 +217,95 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoCancelar)
-                    .addComponent(botaoInserir))
+                    .addComponent(botaoAlterar))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botaoInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoInserirActionPerformed
-        Funcionario funcionario = new Funcionario();
+    private void preencherCampos() {
+        campoNome.setText(funcionario.getNome());
+        campoCpf.setText(funcionario.getCpf());
+        campoTelefone.setText(funcionario.getTelefone());
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        campoDataNascimento.setText(formatter.format(funcionario.getData_nascimento()));
+        campoSalario.setText(String.valueOf(funcionario.getSalario()));
+        campoUf.setText(funcionario.getUf());
+        campoCep.setText(funcionario.getCep());
+        campoCidade.setText(funcionario.getCidade());
+        campoRua.setText(funcionario.getRua());
+        campoNumero.setText(String.valueOf(funcionario.getNumero()));
+        campoUsuario.setText(funcionario.getUsuario());
+        campoSenha.setText(funcionario.getSenha());
+        if (funcionario.getTipoUsuario() == 'A') {
+            comboTipoUsuario.setSelectedIndex(1);
+        }
+    }
+
+    private void botaoAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlterarActionPerformed
         boolean inserir = true;
-        
+
         funcionario.setNome(campoNome.getText());
         funcionario.setCpf(campoCpf.getText());
         funcionario.setTelefone(campoTelefone.getText());
-        
+
         try {
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");     
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             Date date = formatter.parse(campoDataNascimento.getText());
             funcionario.setData_nascimento(date);
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro no formato da data de nascimento!");
             campoDataNascimento.requestFocus();
             inserir = false;
         }
-        
+
         try {
             funcionario.setSalario(Double.parseDouble(campoSalario.getText()));
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro no salário!");
             campoSalario.requestFocus();
             inserir = false;
         }
-        
+
         funcionario.setUf(campoUf.getText());
         funcionario.setCep(campoCep.getText());
         funcionario.setCidade(campoCidade.getText());
         funcionario.setRua(campoRua.getText());
-        
+
         try {
             funcionario.setNumero(Integer.parseInt(campoNumero.getText()));
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro no número da casa!");
             campoNumero.requestFocus();
             inserir = false;
         }
-        
+
         funcionario.setUsuario(campoUsuario.getText());
         funcionario.setSenha(campoSenha.getText());
-        
+
         Object e = comboTipoUsuario.getSelectedItem();
-        if(e.equals("Comum")) {
+        if (e.equals("Comum")) {
             funcionario.setTipoUsuario('C');
         } else {
             funcionario.setTipoUsuario('A');
-        }       
-        
-        if(inserir) {
-            if(daoFuncionario.incluir(funcionario)) {
-                limparCampos();
+        }
+
+        if (inserir) {
+            if (daoFuncionario.alterar(funcionario)) {
+                consulta.atualizarTabela();
+                this.dispose();
             }
         }
-    }//GEN-LAST:event_botaoInserirActionPerformed
+    }//GEN-LAST:event_botaoAlterarActionPerformed
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
-    private void limparCampos() {
-        campoNome.setText("");
-        campoCpf.setText("");
-        campoTelefone.setText("");
-        campoDataNascimento.setText("");
-        campoSalario.setText("");
-        campoUf.setText("");
-        campoCep.setText("");
-        campoCidade.setText("");
-        campoRua.setText("");
-        campoNumero.setText("");
-        campoUsuario.setText("");
-        campoSenha.setText("");
-    }   
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoAlterar;
     private javax.swing.JButton botaoCancelar;
-    private javax.swing.JButton botaoInserir;
     private javax.swing.JTextField campoCep;
     private javax.swing.JTextField campoCidade;
     private javax.swing.JTextField campoCpf;

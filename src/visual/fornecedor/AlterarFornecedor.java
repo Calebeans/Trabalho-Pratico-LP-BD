@@ -1,4 +1,4 @@
-package visual;
+package visual.fornecedor;
 
 import dao.DAOFornecedor;
 import javax.swing.JOptionPane;

@@ -117,11 +117,6 @@ language plpgsql;
 	Triggers Compra
 */
 
-create trigger insert_estoque_compra
-after insert on itens_compra
-for each row
-execute procedure f_insert_estoque_compra();
-
 create or replace function f_insert_estoque_compra()
 returns trigger
 as
@@ -133,10 +128,11 @@ end;
 $$
 language 'plpgsql';
 
-create trigger update_estoque_compra
-after update on itens_compra
+create trigger insert_estoque_compra
+after insert on itens_compra
 for each row
-execute procedure f_update_estoque_compra();
+execute procedure f_insert_estoque_compra();
+
 
 create or replace function f_update_estoque_compra()
 returns trigger
@@ -153,12 +149,11 @@ end;
 $$
 language 'plpgsql';
 
-insert into fornecedor(nome) values ('test');
-
-create trigger timestamp_compra
-after insert on compra
+create trigger update_estoque_compra
+after update on itens_compra
 for each row
-execute procedure f_timestamp_compra();
+execute procedure f_update_estoque_compra();
+
 
 create or replace function f_timestamp_compra()
 returns trigger
@@ -173,32 +168,31 @@ language 'plpgsql';
 
 insert into unidade(descricao) values ('teste');
 
-select * from compra order by id desc limit 1;
+create trigger timestamp_compra
+after insert on compra
+for each row
+execute procedure f_timestamp_compra();
 
 /*
 	Triggers Venda
 */
-
-create trigger insert_estoque_venda
-after insert on itens_venda
-for each row
-execute procedure f_insert_estoque_venda();
 
 create or replace function f_insert_estoque_venda()
 returns trigger
 as
 $$
 begin
-	update venda set estoque = venda.estoque + new.quantidade_produto where new.id_venda = venda.id;
+	update produto set estoque = produto.estoque - new.quantidade_produto where new.id_produto = produto.id;
 	return new;
 end;
 $$
 language 'plpgsql';
 
-create trigger update_estoque_venda
-after update on itens_venda
+create or replace trigger insert_estoque_venda
+after insert on itens_venda
 for each row
-execute procedure f_update_estoque_venda();
+execute procedure f_insert_estoque_venda();
+
 
 create or replace function f_update_estoque_venda()
 returns trigger
@@ -206,7 +200,7 @@ as
 $$
 begin
 	if(new.quantidade_produto != old.quantidade_produto) then
-		update venda set estoque = venda.estoque + (new.quantidade_produto - old.quantidade_produto) where venda.id =  new.id_venda;
+		update produto set estoque = produto.estoque - (new.quantidade_produto - old.quantidade_produto) where produto.id =  new.id_produto;
 		return new;
 	else
 		return new;
@@ -215,11 +209,11 @@ end;
 $$
 language 'plpgsql';
 
-
-create trigger timestamp_venda
-after insert on venda
+create or replace trigger update_estoque_venda
+after update on itens_venda
 for each row
-execute procedure f_timestamp_venda();
+execute procedure f_update_estoque_venda();
+
 
 create or replace function f_timestamp_venda()
 returns trigger
@@ -231,3 +225,8 @@ begin
 end;
 $$
 language 'plpgsql';
+
+create or replace trigger timestamp_venda
+after insert on venda
+for each row
+execute procedure f_timestamp_venda();

@@ -33,6 +33,11 @@ public class Funcionario {
         return retorno;
     }
 
+    @Override
+    public String toString() {
+        return getNome();
+    }
+    
     public void setId(int id) {
         this.id = id;
     }

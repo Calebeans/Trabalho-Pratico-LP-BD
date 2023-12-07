@@ -14,21 +14,15 @@ import javax.swing.JOptionPane;
 import modelo.Compra;
 import modelo.Venda;
 
-/**
- *
- * @author Calebe
- */
 public class DAOVenda{
     public boolean incluirVenda(Venda venda) {
         try {
             Conexao con = new Conexao();
-            String sql = "insert into venda(valor, data_venda"
-                    + "id_funcionario, id_cliente) values(?,?,?)";
+            String sql = "insert into venda(valor, id_funcionario, id_cliente) values(?,?,?)";
             PreparedStatement pstm = con.getConexao().prepareStatement(sql);
             pstm.setDouble(1, venda.getValor());
-            pstm.setDate(2, new java.sql.Date(venda.getData_venda().getTime()));
-            pstm.setInt(3, venda.getFuncionario().getId());
-            pstm.setInt(4, venda.getCliente().getId());
+            pstm.setInt(2, venda.getFuncionario().getId());
+            pstm.setInt(3, venda.getCliente().getId());
             
             if (pstm.executeUpdate() > 0){
                 JOptionPane.showMessageDialog(null, 
@@ -105,7 +99,9 @@ public class DAOVenda{
                 venda.setId(rs.getInt("id"));
                 venda.setValor(rs.getDouble("valor"));
                 venda.setData_venda(rs.getDate("data_venda"));
-                //venda.setFuncionario(new DAOFuncionario().rs.getInt("id_funcionario"));
+                venda.setFuncionario(new DAOFuncionario().consultarPorId(rs.getInt("id_funcionario")));
+                venda.setCliente(new DAOCliente().consultarPorId(rs.getInt("id_cliente")));
+                lista.add(venda);
             }
         } catch (Exception e) {
         }
@@ -120,7 +116,11 @@ public class DAOVenda{
             while(rs.next()) {
                 Venda venda = new Venda();
                 venda.setId(rs.getInt("id"));
-                
+                venda.setValor(rs.getDouble("valor"));
+                venda.setData_venda(rs.getDate("data_venda"));
+                venda.setFuncionario(new DAOFuncionario().consultarPorId(rs.getInt("id_funcionario")));
+                venda.setCliente(new DAOCliente().consultarPorId(rs.getInt("id_cliente")));
+                lista.add(venda);
             }
         } catch (Exception e) {
         }
@@ -132,8 +132,10 @@ public class DAOVenda{
         try{
             String sql = "select * from venda order by id desc limit 1";
             ResultSet rs = Conexao.getConexao().prepareStatement(sql).executeQuery();
-            rs.next();
-            retorno = rs.getInt("id");
+            while(rs.next()) {                
+                retorno = rs.getInt("id");
+                return retorno;
+            }
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -142,7 +144,7 @@ public class DAOVenda{
     
     public Venda achaPorId(int id){
         Venda retorno = new Venda();
-        String sql = "select * from compra where id = "+id;
+        String sql = "select * from venda where id = "+id;
         try { 
             ResultSet rs = Conexao.getConexao().prepareStatement(sql).executeQuery();
             while(rs.next()) {

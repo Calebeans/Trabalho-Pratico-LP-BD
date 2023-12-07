@@ -23,11 +23,11 @@ public class DAOItensVenda {
         try {
             Conexao con = new Conexao();
             String sql = "insert into itens_venda(quantidade_produto, id_venda,"
-                    + "id_produto";
+                    + "id_produto) values (?, ?, ?)";
             PreparedStatement pstm = con.getConexao().prepareStatement(sql);
             pstm.setDouble(1, itensVenda.getQuantidadeProduto());
             pstm.setInt(2, itensVenda.getVenda().getId());
-            //pstm.setInt(3, itensVenda.getProduto().getId());
+            pstm.setInt(3, itensVenda.getProduto().getId());
             
             if (pstm.executeUpdate() > 0){
                 JOptionPane.showMessageDialog(null, 
@@ -93,14 +93,15 @@ public class DAOItensVenda {
     
     public List<ItensVenda> consultaPorVenda(int id_venda){
         List<ItensVenda> lista = new ArrayList<>();
-        String sql = "select * from itens_venda where id = "+id_venda;
+        String sql = "select * from itens_venda where id_venda = "+id_venda;
         try { 
             ResultSet rs = Conexao.getConexao().prepareStatement(sql).executeQuery();
             while(rs.next()) {
                 ItensVenda itensVenda = new ItensVenda();
                 itensVenda.setId(rs.getInt("id"));
                 itensVenda.setQuantidadeProduto(rs.getDouble("quantidade_produto"));
-                itensVenda.setVenda(new DAOVenda().achaPorId(rs.getInt("id_compra")));
+                itensVenda.setProduto(new DAOProduto().consultarPorId(rs.getInt("id_produto")));
+                itensVenda.setVenda(new DAOVenda().achaPorId(rs.getInt("id_venda")));
                 lista.add(itensVenda);
             }
         } catch(Exception ex) {

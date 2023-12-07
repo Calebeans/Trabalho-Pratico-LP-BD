@@ -76,10 +76,10 @@ public class DAOCliente {
     public Cliente consultarPorId(int id) {
         Cliente cliente = null;
         try {
-            String sql = "select * from cliente where id = " + id;
+            String sql = "select * from cliente where id = ?";
             PreparedStatement ps = Conexao.getConexao().prepareStatement(sql);
             ps.setInt(1, id);
-            ResultSet rs = Conexao.getConexao().prepareStatement(sql).executeQuery();
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 cliente = new Cliente();
 

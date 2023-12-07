@@ -10,21 +10,25 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="botaoConsultarFuncionarios" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelConsultarFuncionarios" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="botaoConsultarCompras" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelConsultarCompras" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelConsultarVendas" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="botaoConsultarVendas" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="labelConsultarProdutos" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="botaoConsultarProdutos" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="botaoConsultarFuncionarios" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelConsultarFuncionarios" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="botaoConsultarCompras" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelConsultarCompras" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="labelConsultarFornecedores" min="-2" max="-2" attributes="0"/>
-                              <Component id="botaoConsultarFornecedores" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="botaoConsultarUnidades" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelConsultarUnidades" min="-2" max="-2" attributes="0"/>
+                      <Component id="botaoConsultarItensCompra" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelConsultarItensCompra" min="-2" max="-2" attributes="0"/>
+                      <Component id="botaoConsultarFornecedores" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelConsultarFornecedores" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelConsultarItensVenda" min="-2" max="-2" attributes="0"/>
+                      <Component id="botaoConsultarItensVenda" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="87" max="32767" attributes="0"/>
               </Group>
@@ -34,24 +38,46 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="labelConsultarProdutos" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="labelConsultarProdutos" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelConsultarUnidades" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="botaoConsultarProdutos" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="labelConsultarFuncionarios" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="botaoConsultarFuncionarios" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="botaoConsultarProdutos" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="botaoConsultarUnidades" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelConsultarCompras" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelConsultarFuncionarios" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="labelConsultarFornecedores" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="botaoConsultarCompras" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="botaoConsultarFuncionarios" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="botaoConsultarFornecedores" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="143" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="labelConsultarCompras" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelConsultarItensCompra" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="botaoConsultarCompras" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="botaoConsultarItensCompra" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="labelConsultarVendas" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelConsultarItensVenda" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="botaoConsultarVendas" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="botaoConsultarItensVenda" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="79" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -108,6 +134,58 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Fornecedor"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelConsultarVendas">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Venda"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="botaoConsultarVendas">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Consultar Vendas"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoConsultarVendasActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelConsultarItensCompra">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Itens Compra"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="botaoConsultarItensCompra">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Consultar Itens Compra"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoConsultarItensCompraActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelConsultarItensVenda">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Itens Venda"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="botaoConsultarItensVenda">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Consultar Itens Venda"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoConsultarItensVendaActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelConsultarUnidades">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Unidade"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="botaoConsultarUnidades">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Consultar Unidades"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoConsultarUnidadesActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

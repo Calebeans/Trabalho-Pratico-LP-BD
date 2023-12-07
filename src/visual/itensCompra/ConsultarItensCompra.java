@@ -1,4 +1,4 @@
-package visual;
+package visual.itensCompra;
 import dao.DAOCompra;
 import dao.DAOItensCompra;
 import java.util.List;

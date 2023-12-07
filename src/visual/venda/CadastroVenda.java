@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package visual;
+package visual.venda;
 
+import visual.itensVenda.CadastroItensVenda;
 import dao.DAOCliente;
 import dao.DAOItensVenda;
 import dao.DAOVenda;
@@ -23,7 +24,7 @@ import modelo.ItensVenda;
 public class CadastroVenda extends javax.swing.JFrame {
     private Venda venda = new Venda();
     public List<ItensVenda> listaItens = new ArrayList<>();
-    public static double valor = 0.0;
+    public double valor = 0.0;
     private Funcionario funcionario = new Funcionario();
 
     /**
@@ -57,7 +58,7 @@ public class CadastroVenda extends javax.swing.JFrame {
         lbValor = new javax.swing.JLabel();
         btnAddVenda = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lbCliente.setText("Cliente");
 
@@ -140,7 +141,6 @@ public class CadastroVenda extends javax.swing.JFrame {
 
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
         // TODO add your handling code here:
-        Venda venda = new Venda();
         boolean inserido = true;
         venda.setValor(valor);
         venda.setFuncionario(funcionario);
@@ -169,41 +169,6 @@ public class CadastroVenda extends javax.swing.JFrame {
         civ.setLocationRelativeTo(null);
         civ.setVisible(true);
     }//GEN-LAST:event_btnAddVendaActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroVenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroVenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroVenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroVenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        Funcionario func = new Funcionario();
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CadastroVenda(func).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddVenda;
