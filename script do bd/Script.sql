@@ -101,3 +101,57 @@ create table itens_compra(
 	foreign key (id_compra) references compra(id),
 	foreign key (id_produto) references produto(id)
 );
+
+create trigger insert_estoque_compra
+after insert on itens_compra
+for each row
+execute procedure f_insert_estoque_compra();
+
+create or replace function f_insert_estoque_compra()
+returns trigger
+as
+$$
+begin
+	update produto set produto.estoque = produto.estoque + new.quantidade where new.id_produto = produto.id;
+	return new;
+end;
+$$
+language 'plpgsql';
+
+create trigger update_estoque_compra
+after update on itens_compra
+for each row
+execute procedure f_update_estoque_compra();
+
+create or replace function f_update_estoque_compra()
+returns trigger
+as
+$$
+begin
+	if(new.quantidade != old.quantidade) then
+		update produto set produto.estoque = produto.estoque + (new.quantidade - old.quantidade) where produto.id =  new.id_produto;
+		return new;
+	else
+		return new;
+	end if;
+end;
+$$
+language 'plpgsql';
+
+insert into fornecedor(nome) values ('test');
+
+create trigger timestamp_compra
+after insert on compra
+for each row
+execute procedure f_timestamp_compra();
+
+create or replace function f_timestamp_compra()
+returns trigger
+as
+$$
+begin
+	update compra set data_requerimento = (select NOW()::TIMESTAMP) where id = new.id;
+	return new;
+end;
+$$
+language 'plpgsql';
