@@ -148,7 +148,7 @@ public class CadastroItensCompra extends javax.swing.JFrame {
         if(inserir){
             listaItens.add(itenscompra);
         }
-        cadCompra.valor += itenscompra.getProduto().getPreco();
+        cadCompra.valor += itenscompra.getProduto().getPreco() * itenscompra.getQuantidade();
         cadCompra.alteraValor();
         limpaTela();
     }//GEN-LAST:event_botaoIncluirActionPerformed
