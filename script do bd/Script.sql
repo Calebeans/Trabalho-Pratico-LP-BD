@@ -112,7 +112,7 @@ returns trigger
 as
 $$
 begin
-	update produto set produto.estoque = produto.estoque + new.quantidade where new.id_produto = produto.id;
+	update produto set estoque = produto.estoque + new.quantidade where new.id_produto = produto.id;
 	return new;
 end;
 $$
@@ -129,7 +129,7 @@ as
 $$
 begin
 	if(new.quantidade != old.quantidade) then
-		update produto set produto.estoque = produto.estoque + (new.quantidade - old.quantidade) where produto.id =  new.id_produto;
+		update produto set estoque = produto.estoque + (new.quantidade - old.quantidade) where produto.id =  new.id_produto;
 		return new;
 	else
 		return new;
@@ -155,3 +155,8 @@ begin
 end;
 $$
 language 'plpgsql';
+
+insert into unidade(descricao) values ('teste');
+
+select * from compra order by id desc limit 1;
+

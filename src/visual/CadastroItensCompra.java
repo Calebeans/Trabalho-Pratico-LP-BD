@@ -20,17 +20,18 @@ import modelo.Produto;
 public class CadastroItensCompra extends javax.swing.JFrame {
     private DAOItensCompra daoItensCompra = new DAOItensCompra();
     private List<ItensCompra> listaItens;
+    private CadastroCompra cadCompra;
     private Compra compra = new Compra();
     
     /**
      * Creates new form CadastroItensCompra
      */
     
-    public CadastroItensCompra(Compra compra, List<ItensCompra> listaItens){
+    public CadastroItensCompra(Compra compra, List<ItensCompra> listaItens, CadastroCompra cadCompra){
+        this();
         this.compra = compra;
         this.listaItens = listaItens;
-        initComponents();
-        comboProduto.setModel(new DefaultComboBoxModel(new DAOProduto().consultarProdutos().toArray()));
+        this.cadCompra = cadCompra; 
     }
     
     public CadastroItensCompra() {
@@ -147,7 +148,8 @@ public class CadastroItensCompra extends javax.swing.JFrame {
         if(inserir){
             listaItens.add(itenscompra);
         }
-        CadastroCompra.valor += itenscompra.getProduto().getPreco();
+        cadCompra.valor += itenscompra.getProduto().getPreco();
+        cadCompra.alteraValor();
         limpaTela();
     }//GEN-LAST:event_botaoIncluirActionPerformed
 

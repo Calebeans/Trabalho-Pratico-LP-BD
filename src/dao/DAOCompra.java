@@ -38,6 +38,19 @@ public class DAOCompra {
         return true;
     }
     
+    public int retornaUltimo(){
+        int retorno = -1;
+        try{
+            String sql = "select * from compra order by id desc limit 1";
+            ResultSet rs = Conexao.getConexao().prepareStatement(sql).executeQuery();
+            rs.next();
+            retorno = rs.getInt("id");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return retorno;
+    }
+    
     public List<Compra> retornaTodos(){
         List<Compra> retorno = new ArrayList<>();
         String sql = "select * from compra";
