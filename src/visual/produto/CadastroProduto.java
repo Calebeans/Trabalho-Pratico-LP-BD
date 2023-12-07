@@ -13,6 +13,7 @@ public class CadastroProduto extends javax.swing.JFrame {
     public CadastroProduto() {
         initComponents();
         preencherComboUnidade();
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

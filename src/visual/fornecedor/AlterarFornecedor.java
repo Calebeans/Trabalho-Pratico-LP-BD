@@ -19,6 +19,7 @@ public class AlterarFornecedor extends javax.swing.JFrame {
 
     public AlterarFornecedor() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

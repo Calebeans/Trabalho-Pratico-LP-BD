@@ -12,6 +12,7 @@ public class ConsultarItensCompra extends javax.swing.JFrame {
     public ConsultarItensCompra() {
         initComponents();
         comboCompra.setModel(new DefaultComboBoxModel(new DAOCompra().retornaTodos().toArray()));
+        this.setLocationRelativeTo(null);
     }
     
     public void atualizarTabela(){

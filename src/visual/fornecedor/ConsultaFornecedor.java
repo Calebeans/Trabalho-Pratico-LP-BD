@@ -12,6 +12,7 @@ public class ConsultaFornecedor extends javax.swing.JFrame {
     
     public ConsultaFornecedor() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

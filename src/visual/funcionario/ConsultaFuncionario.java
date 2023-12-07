@@ -13,6 +13,7 @@ public class ConsultaFuncionario extends javax.swing.JFrame {
 
     public ConsultaFuncionario() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

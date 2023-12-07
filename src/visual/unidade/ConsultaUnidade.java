@@ -22,6 +22,7 @@ public class ConsultaUnidade extends javax.swing.JFrame {
     public ConsultaUnidade() {        
         initComponents();
         atualizarTabela();
+        this.setLocationRelativeTo(null);
     }
 
     /**

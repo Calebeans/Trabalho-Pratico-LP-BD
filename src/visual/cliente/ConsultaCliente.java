@@ -13,6 +13,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
     
     public ConsultaCliente() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

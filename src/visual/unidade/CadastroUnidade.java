@@ -18,6 +18,7 @@ public class CadastroUnidade extends javax.swing.JFrame {
      */
     public CadastroUnidade() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

@@ -29,6 +29,7 @@ public class CadastroCompra extends javax.swing.JFrame {
         initComponents();
         comboFornecedor.setModel(new DefaultComboBoxModel(new DAOFornecedor().consultarTodos().toArray()));
         labelValor.setText(Double.toString(valor));
+        this.setLocationRelativeTo(null);
     }
     
     public void alteraValor(){

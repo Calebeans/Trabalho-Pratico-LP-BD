@@ -37,6 +37,7 @@ public class CadastroItensVenda extends javax.swing.JFrame {
     public CadastroItensVenda(){
         initComponents();
         cbProduto.setModel(new DefaultComboBoxModel(new DAOProduto().consultarProdutos().toArray()));
+        this.setLocationRelativeTo(null);
     }
     
     public void limpaTela(){

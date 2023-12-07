@@ -23,6 +23,7 @@ public class AlterarUnidade extends javax.swing.JFrame {
     }  
     public AlterarUnidade() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

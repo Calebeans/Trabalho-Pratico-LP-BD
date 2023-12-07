@@ -25,6 +25,7 @@ public class ConsultarVenda extends javax.swing.JFrame {
     public ConsultarVenda() {
         initComponents();
         cbCliente.setModel(new DefaultComboBoxModel (new DAOCliente().consultarTodos("").toArray()));
+        this.setLocationRelativeTo(null);
     }
     
     public void atualizarTabela(){

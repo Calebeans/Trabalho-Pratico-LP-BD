@@ -12,6 +12,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
     
     public CadastroFuncionario() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

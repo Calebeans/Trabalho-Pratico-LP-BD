@@ -35,6 +35,7 @@ public class CadastroVenda extends javax.swing.JFrame {
         this.funcionario = funcionario;
         cbCliente.setModel(new DefaultComboBoxModel (new DAOCliente().consultarTodos("").toArray()));
         lbValor.setText(Double.toString(valor));
+        this.setLocationRelativeTo(null);
     }
     
     public void alterarValor(){

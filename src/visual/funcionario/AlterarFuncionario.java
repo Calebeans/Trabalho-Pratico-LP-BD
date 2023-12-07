@@ -21,6 +21,7 @@ public class AlterarFuncionario extends javax.swing.JFrame {
 
     public AlterarFuncionario() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

@@ -23,6 +23,7 @@ public class AlterarProduto extends javax.swing.JFrame {
     
     public AlterarProduto() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
     
     @SuppressWarnings("unchecked")

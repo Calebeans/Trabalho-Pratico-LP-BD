@@ -12,6 +12,7 @@ public class ConsultaProduto extends javax.swing.JFrame {
     
     public ConsultaProduto() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

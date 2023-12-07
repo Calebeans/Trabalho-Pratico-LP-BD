@@ -22,6 +22,7 @@ public class AlterarCliente extends javax.swing.JFrame {
     
     public AlterarCliente() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

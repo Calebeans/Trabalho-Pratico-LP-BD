@@ -10,6 +10,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
 
     public CadastroFornecedor() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
