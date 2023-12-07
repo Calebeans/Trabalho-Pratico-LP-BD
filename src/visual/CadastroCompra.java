@@ -6,15 +6,20 @@ package visual;
 
 import dao.DAOCompra;
 import dao.DAOFornecedor;
+import dao.DAOItensCompra;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import modelo.Compra;
 import modelo.Fornecedor;
+import modelo.ItensCompra;
 /**
  *
  * @author Igor
  */
 public class CadastroCompra extends javax.swing.JFrame {
     private Compra compra = new Compra();
+    public List<ItensCompra> listaItens = new ArrayList<>();
     public static double valor = 0.0;
     /**
      * Creates new form CadastroCompra
@@ -122,7 +127,10 @@ public class CadastroCompra extends javax.swing.JFrame {
 
     private void botaoIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoIncluirActionPerformed
         compra.setValor(valor);
-        new DAOCompra().alterar(compra);
+        new DAOCompra().incluir(compra);
+        for(ItensCompra i : listaItens){
+            new DAOItensCompra().inserir(i);
+        }
     }//GEN-LAST:event_botaoIncluirActionPerformed
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
@@ -130,10 +138,9 @@ public class CadastroCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoIdCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoIdCActionPerformed
-        boolean inserir = true;
         compra.setValor(0.0);
         compra.setFornecedor((Fornecedor) comboFornecedor.getSelectedItem());
-        CadastroItensCompra cic = new CadastroItensCompra(compra);
+        CadastroItensCompra cic = new CadastroItensCompra(compra,listaItens);
         cic.setTitle("Adicione os Produtos");
         cic.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         cic.setLocationRelativeTo(null);
