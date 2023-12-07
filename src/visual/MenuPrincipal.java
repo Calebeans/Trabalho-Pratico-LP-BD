@@ -317,6 +317,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sistema de Vendas");
 
         labelRealizarVenda.setText("Venda");
 
