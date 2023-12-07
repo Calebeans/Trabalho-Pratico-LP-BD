@@ -49,6 +49,45 @@ public class DAOFuncionario {
             return false;
         }
     }
+    
+    public Funcionario consultarPorId(int id) {
+        try {
+            String sql = "select id, nome, cpf, telefone, data_nascimento, salario, usuario, tipo_usuario, uf, cep, cidade, rua, numero from funcionario where id = ?";
+            PreparedStatement ps = Conexao.getConexao().prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Funcionario funcionario = new Funcionario();
+
+                // Informações Pessoais
+                funcionario.setId(rs.getInt("id"));
+                funcionario.setNome(rs.getString("nome"));
+                funcionario.setCpf(rs.getString("cpf"));
+                funcionario.setTelefone(rs.getString("telefone"));
+                funcionario.setData_nascimento(rs.getDate("data_nascimento"));
+
+                // Salario
+                funcionario.setSalario(rs.getDouble("salario"));
+
+                // Login
+                funcionario.setUsuario(rs.getString(("usuario")));
+                funcionario.setTipoUsuario(rs.getString("tipo_usuario").charAt(0));
+
+                // Endereço
+                funcionario.setUf(rs.getString("uf"));
+                funcionario.setCep(rs.getString("cep"));
+                funcionario.setCidade(rs.getString("cidade"));
+                funcionario.setRua(rs.getString("rua"));
+                funcionario.setNumero(rs.getInt("numero"));
+
+                return funcionario;
+            }
+
+        } catch (Exception ex) {
+            System.out.println("SQLException " + ex.getMessage());
+        }
+        return null;
+    }
 
     public List<Funcionario> consultarPorNome(String nome) {
         List<Funcionario> lista = new ArrayList<>();

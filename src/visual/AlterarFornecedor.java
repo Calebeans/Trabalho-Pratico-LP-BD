@@ -1,15 +1,9 @@
 package visual;
 
 import dao.DAOFornecedor;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.JOptionPane;
 import modelo.Fornecedor;
 
-/**
- *
- * @author Henrique
- */
 public class AlterarFornecedor extends javax.swing.JFrame {
 
     private Fornecedor fornecedor;
@@ -50,7 +44,7 @@ public class AlterarFornecedor extends javax.swing.JFrame {
         botaoAlterar = new javax.swing.JButton();
         botaoCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         labelNome.setText("Nome");
 

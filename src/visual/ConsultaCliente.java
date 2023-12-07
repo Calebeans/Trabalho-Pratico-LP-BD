@@ -6,10 +6,6 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
 
-/**
- *
- * @author Henrique
- */
 public class ConsultaCliente extends javax.swing.JFrame {
 
     private DAOCliente daoCliente = new DAOCliente();
@@ -31,7 +27,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
         botaoAlterar = new javax.swing.JButton();
         botaoExcluir = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         labelNome.setText("Nome");
 
@@ -170,11 +166,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
         for(Cliente i : lista) {
             model.addRow(i.getDadosModel());
         }
-    }
-    
-    public static void main(String args[]) {
-        new ConsultaCliente().setVisible(true);
-    }
+    }  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAlterar;
