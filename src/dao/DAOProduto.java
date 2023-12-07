@@ -44,7 +44,7 @@ public class DAOProduto {
                 produto.setId(rs.getInt("id"));
                 produto.setNome(rs.getString("nome"));
                 produto.setPreco(rs.getDouble("preco"));
-                produto.setEstoque(rs.getInt("unidade"));
+                produto.setEstoque(rs.getInt("estoque"));
                 produto.setUnidade(daoUnidade.consultarPorId(rs.getInt("id_unidade")));
                 lista.add(produto);
             }
