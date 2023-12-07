@@ -6,10 +6,6 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import modelo.Funcionario;
 
-/**
- *
- * @author Lucas
- */
 public class CadastroFuncionario extends javax.swing.JFrame {
 
     private DAOFuncionario daoFuncionario = new DAOFuncionario();
@@ -269,7 +265,9 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         }       
         
         if(inserir) {
-            daoFuncionario.incluir(funcionario);
+            if(daoFuncionario.incluir(funcionario)) {
+                limparCampos();
+            }
         }
     }//GEN-LAST:event_botaoInserirActionPerformed
 
@@ -277,9 +275,21 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void limparCampos() {
+        campoNome.setText("");
+        campoCpf.setText("");
+        campoTelefone.setText("");
+        campoDataNascimento.setText("");
+        campoSalario.setText("");
+        campoUf.setText("");
+        campoCep.setText("");
+        campoCidade.setText("");
+        campoRua.setText("");
+        campoNumero.setText("");
+        campoUsuario.setText("");
+        campoSenha.setText("");
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
