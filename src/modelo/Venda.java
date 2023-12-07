@@ -17,6 +17,11 @@ public class Venda {
     private Funcionario funcionario;
     private Date data_venda;
     Cliente cliente;
+    
+    public Object[] getDadosModel() {
+        Object[] retorno = new Object[]{getId(), getValor(), getFuncionario(), getData_venda(), getCliente()};
+        return retorno;
+    }
 
     public int getId() {
         return id;

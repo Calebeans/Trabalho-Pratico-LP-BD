@@ -14,6 +14,11 @@ public class ItensVenda {
     private double quantidadeProduto;
     private Venda venda;
     Produto produto;
+    
+    public Object[] getDadosModel(){
+        Object[] retorno = new Object[]{getId(),getQuantidadeProduto(),getVenda(),getProduto()};
+        return retorno;
+    }
 
     public int getId() {
         return id;
