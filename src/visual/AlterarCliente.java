@@ -49,7 +49,7 @@ public class AlterarCliente extends javax.swing.JFrame {
         botaoAlterar = new javax.swing.JButton();
         botaoCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         labelNome1.setText("Nome");
 

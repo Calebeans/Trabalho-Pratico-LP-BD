@@ -40,7 +40,7 @@ public class AlterarProduto extends javax.swing.JFrame {
         botaoAlterar = new javax.swing.JButton();
         comboUnidade = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         botaoCancelar.setText("Cancelar");
         botaoCancelar.addActionListener(new java.awt.event.ActionListener() {

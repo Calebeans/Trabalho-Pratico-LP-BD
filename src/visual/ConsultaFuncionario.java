@@ -1,12 +1,8 @@
 package visual;
 
 import dao.DAOFuncionario;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import modelo.Funcionario;
 
@@ -31,7 +27,7 @@ public class ConsultaFuncionario extends javax.swing.JFrame {
         botaoConsultarNome = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         labelNome.setText("Nome");
 
@@ -176,10 +172,6 @@ public class ConsultaFuncionario extends javax.swing.JFrame {
         for (Funcionario i : lista) {
             model.addRow(i.getDadosModel());
         }
-    }
-
-    public static void main(String args[]) {
-        new ConsultaFuncionario().setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

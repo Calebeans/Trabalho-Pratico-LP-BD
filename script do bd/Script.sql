@@ -102,6 +102,21 @@ create table itens_compra(
 	foreign key (id_produto) references produto(id)
 );
 
+/*
+	Função Verificar Login
+*/
+
+create or replace function verificarLogin(usuariop text, senhap text) returns integer
+as $$ 
+begin
+	return (select id from funcionario where usuario = usuariop and senha = senhap);
+end; $$
+language plpgsql;
+
+/*
+	Triggers Compra
+*/
+
 create trigger insert_estoque_compra
 after insert on itens_compra
 for each row
