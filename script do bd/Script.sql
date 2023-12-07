@@ -16,6 +16,9 @@ create table cliente (
 	numero int
 );
 
+insert into cliente(nome, cpf, data_nascimento) values ('Calebe', '12345678910', '2023-12-07');
+insert into cliente(nome, cpf, data_nascimento) values ('Henrique', '66677788899', '2023-12-07');
+
 create table funcionario (
 	id serial not null primary key,
 	nome varchar(100),
@@ -36,7 +39,8 @@ create table funcionario (
 	numero int
 );
 
-insert into funcionario(usuario, senha, tipo_usuario) values('admin', 'admin', 'A');
+insert into funcionario(nome, cpf, data_nascimento, usuario, senha, tipo_usuario, salario) values('Lucas', '11122233344', '2023-12-07', 'admin', 'admin', 'A', 5000.0);
+insert into funcionario(nome, cpf, data_nascimento, usuario, senha, tipo_usuario, salario) values('Igor', '55566677788', '2023-12-07', 'igor', 'senha', 'C', 3000.0);
 
 create table venda(
 	id serial not null primary key,
@@ -53,6 +57,9 @@ create table unidade(
 	descricao varchar(10)
 );
 
+insert into unidade(descricao) values('Unidade');
+insert into unidade(descricao) values('L');
+
 create table produto(
 	id serial not null primary key,
 	nome varchar(100),
@@ -61,6 +68,9 @@ create table produto(
 	id_unidade int,
 	foreign key (id_unidade) references unidade (id)
 );
+
+insert into produto(nome, preco, estoque, id_unidade) values ('Roda', 300, 12, 1);
+insert into produto(nome, preco, estoque, id_unidade) values ('Oléo', 1, 100, 2);
 
 create table itens_venda(
 	id serial not null primary key,
@@ -83,6 +93,8 @@ create table fornecedor(
 	rua varchar(50),
 	numero int
 );
+
+insert into fornecedor(nome, cnpj) values ('KRMAI', '12345678000100');
 
 create table compra(
 	id serial not null primary key,
