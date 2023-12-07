@@ -6,31 +6,38 @@
 package visual;
 
 import dao.DAOCliente;
+import dao.DAOItensVenda;
 import dao.DAOVenda;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import modelo.Cliente;
 import modelo.Venda;
+import modelo.Cliente;
+import modelo.Funcionario;
+import modelo.ItensVenda;
 
 /**
  *
  * @author Calebe
  */
 public class CadastroVenda extends javax.swing.JFrame {
+    private Venda venda = new Venda();
+    public List<ItensVenda> listaItens = new ArrayList<>();
+    public static double valor = 0.0;
+    private Funcionario funcionario = new Funcionario();
 
     /**
      * Creates new form CadastroVenda
      */
-    private DAOVenda daoVenda = new DAOVenda();
-    public CadastroVenda() {
+    public CadastroVenda(Funcionario funcionario) {
         initComponents();
-        cbFunc.setModel(new DefaultComboBoxModel(new DAOCliente().consultarTodos("").toArray()));
+        this.funcionario = funcionario;
+        cbCliente.setModel(new DefaultComboBoxModel (new DAOCliente().consultarTodos("").toArray()));
+        lbValor.setText(Double.toString(valor));
+    }
+    
+    public void alterarValor(){
+        lbValor.setText(Double.toString(valor));
     }
 
     /**
@@ -42,36 +49,19 @@ public class CadastroVenda extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lbValor = new javax.swing.JLabel();
-        txtValor = new javax.swing.JTextField();
-        lbDataVenda = new javax.swing.JLabel();
-        txtDataVenda = new javax.swing.JTextField();
-        lbFunc = new javax.swing.JLabel();
         lbCliente = new javax.swing.JLabel();
-        cbFunc = new javax.swing.JComboBox();
+        cbCliente = new javax.swing.JComboBox();
         btnInserir = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        txtCliente = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbCliente = new javax.swing.JTable();
-        btnConsulta = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        lbValor = new javax.swing.JLabel();
+        btnAddVenda = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lbValor.setText("Valor");
-
-        lbDataVenda.setText("Data da Venda");
-
-        lbFunc.setText("Funcionario");
-
         lbCliente.setText("Cliente");
 
-        cbFunc.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbFunc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbFuncActionPerformed(evt);
-            }
-        });
+        cbCliente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnInserir.setText("Inserir");
         btnInserir.addActionListener(new java.awt.event.ActionListener() {
@@ -87,35 +77,14 @@ public class CadastroVenda extends javax.swing.JFrame {
             }
         });
 
-        txtCliente.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtClienteKeyPressed(evt);
-            }
-        });
+        jLabel1.setText("Valor");
 
-        tbCliente.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Cód", "Nome"
-            }
-        ));
-        tbCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tbCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbClienteMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tbCliente);
+        lbValor.setText("0.0");
 
-        btnConsulta.setText("Consulta");
-        btnConsulta.addActionListener(new java.awt.event.ActionListener() {
+        btnAddVenda.setText("Adicionar Itens na Venda");
+        btnAddVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultaActionPerformed(evt);
+                btnAddVendaActionPerformed(evt);
             }
         });
 
@@ -125,62 +94,41 @@ public class CadastroVenda extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnInserir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelar))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbValor)
-                                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(56, 56, 56)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbDataVenda)
-                                    .addComponent(txtDataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(lbCliente)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(txtCliente))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(lbFunc)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(cbFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnConsulta))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 9, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(btnCancelar)
+                        .addGap(6, 6, 6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbCliente)
+                            .addComponent(cbCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(169, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAddVenda)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(10, 10, 10)
+                                .addComponent(lbValor)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
+                .addComponent(lbCliente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnAddVenda)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbValor)
-                    .addComponent(lbDataVenda))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbFunc))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbCliente)
-                    .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConsulta))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInserir)
                     .addComponent(btnCancelar))
@@ -194,81 +142,34 @@ public class CadastroVenda extends javax.swing.JFrame {
         // TODO add your handling code here:
         Venda venda = new Venda();
         boolean inserido = true;
+        venda.setValor(valor);
+        venda.setFuncionario(funcionario);
+        new DAOVenda().incluirVenda(venda);
+        venda.setId(new DAOVenda().retornaUltimo());
         
-        try {
-            venda.setValor(Integer.parseInt(txtValor.getText()));
-        } catch(Exception ex) {
-            JOptionPane.showMessageDialog(null, "Erro no valor da Venda!");
-            txtValor.requestFocus();
-            inserido = false;
+        for(ItensVenda i : listaItens) {
+            i.setVenda(venda);
+            new DAOItensVenda().incluirItensVenda(i);
         }
-        
-        try {
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-            Date date = formatter.parse(txtDataVenda.getText());
-            venda.setData_venda(date);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Erro no formato da data!");
-            txtDataVenda.requestFocus();
-            inserido = false;
-        }
-        
-        if(inserido) {
-            try {
-                daoVenda.incluirVenda(venda);
-            } catch (Exception ex) {
-                Logger.getLogger(CadastroVenda.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            limparCampos();
-        }
-        
     }//GEN-LAST:event_btnInserirActionPerformed
 
-    
-    
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaActionPerformed
+    private void btnAddVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddVendaActionPerformed
         // TODO add your handling code here:
-        preencherTabela();
-    }//GEN-LAST:event_btnConsultaActionPerformed
+        boolean inserir = true;
+        venda.setValor(0.0);
+        venda.setCliente((Cliente) cbCliente.getSelectedItem());
+        CadastroItensVenda civ = new CadastroItensVenda(venda, listaItens,this);
+        civ.setTitle("Adicione as Vendas");
+        civ.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        civ.setLocationRelativeTo(null);
+        civ.setVisible(true);
+    }//GEN-LAST:event_btnAddVendaActionPerformed
 
-    private void tbClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbClienteMouseClicked
-        // TODO add your handling code here:
-        Object codigo = tbCliente.getModel().getValueAt(tbCliente.getSelectedRow(), 0);
-        JOptionPane.showMessageDialog(this, codigo);
-    }//GEN-LAST:event_tbClienteMouseClicked
-
-    private void txtClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClienteKeyPressed
-        // TODO add your handling code here:
-        preencherTabela();
-    }//GEN-LAST:event_txtClienteKeyPressed
-
-    private void cbFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFuncActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_cbFuncActionPerformed
-
-    private void preencherTabela() {
-        List<Cliente> listaC = new 
-        DAOCliente().consultarPorNome(txtCliente.getText());
-        Cliente cliente;
-        cliente = (Cliente) cbFunc.getSelectedItem();
-        DefaultTableModel model = (DefaultTableModel) tbCliente.getModel();
-        model.setNumRows(0);
-        
-        for (Cliente cli : listaC) {
-            model.addRow(cli.getDadosModel());
-        }
-    }
-    
-    private void limparCampos() {
-        txtValor.setText("");
-        txtDataVenda.setText("");
-    }
     /**
      * @param args the command line arguments
      */
@@ -295,28 +196,22 @@ public class CadastroVenda extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CadastroVenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        Funcionario func = new Funcionario();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroVenda().setVisible(true);
+                new CadastroVenda(func).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddVenda;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnConsulta;
     private javax.swing.JButton btnInserir;
-    private javax.swing.JComboBox cbFunc;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox cbCliente;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lbCliente;
-    private javax.swing.JLabel lbDataVenda;
-    private javax.swing.JLabel lbFunc;
     private javax.swing.JLabel lbValor;
-    private javax.swing.JTable tbCliente;
-    private javax.swing.JTextField txtCliente;
-    private javax.swing.JTextField txtDataVenda;
-    private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }

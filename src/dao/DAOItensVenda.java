@@ -7,7 +7,11 @@ package dao;
 
 import conexao.Conexao;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
+import modelo.ItensCompra;
 import modelo.ItensVenda;
 
 /**
@@ -23,7 +27,7 @@ public class DAOItensVenda {
             PreparedStatement pstm = con.getConexao().prepareStatement(sql);
             pstm.setDouble(1, itensVenda.getQuantidadeProduto());
             pstm.setInt(2, itensVenda.getVenda().getId());
-            pstm.setInt(3, itensVenda.getProduto().getId());
+            //pstm.setInt(3, itensVenda.getProduto().getId());
             
             if (pstm.executeUpdate() > 0){
                 JOptionPane.showMessageDialog(null, 
@@ -67,7 +71,7 @@ public class DAOItensVenda {
             
             pstm.setDouble(1, itensVenda.getQuantidadeProduto());
             pstm.setInt(2, itensVenda.getVenda().getId());
-            pstm.setInt(3, itensVenda.getProduto().getId());
+            //pstm.setInt(3, itensVenda.getProduto().getId());
             
             pstm.setInt(4, itensVenda.getId());
             
@@ -85,5 +89,23 @@ public class DAOItensVenda {
         }
         
         
+    }
+    
+    public List<ItensVenda> consultaPorVenda(int id_venda){
+        List<ItensVenda> lista = new ArrayList<>();
+        String sql = "select * from itens_venda where id = "+id_venda;
+        try { 
+            ResultSet rs = Conexao.getConexao().prepareStatement(sql).executeQuery();
+            while(rs.next()) {
+                ItensVenda itensVenda = new ItensVenda();
+                itensVenda.setId(rs.getInt("id"));
+                itensVenda.setQuantidadeProduto(rs.getDouble("quantidade_produto"));
+                itensVenda.setVenda(new DAOVenda().achaPorId(rs.getInt("id_compra")));
+                lista.add(itensVenda);
+            }
+        } catch(Exception ex) {
+            System.out.println("SQLException " + ex.getMessage());            
+        }     
+        return lista;
     }
 }

@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import modelo.Compra;
 import modelo.Venda;
 
 /**
@@ -18,7 +19,7 @@ import modelo.Venda;
  * @author Calebe
  */
 public class DAOVenda{
-    public boolean incluirVenda(Venda venda) throws Exception{
+    public boolean incluirVenda(Venda venda) {
         try {
             Conexao con = new Conexao();
             String sql = "insert into venda(valor, data_venda"
@@ -104,10 +105,55 @@ public class DAOVenda{
                 venda.setId(rs.getInt("id"));
                 venda.setValor(rs.getDouble("valor"));
                 venda.setData_venda(rs.getDate("data_venda"));
-                //venda.setFuncionario(rs.getInt("id_funcionario"));
+                //venda.setFuncionario(new DAOFuncionario().rs.getInt("id_funcionario"));
             }
         } catch (Exception e) {
         }
         return lista;
+    }
+    
+    public List<Venda> consultaPorCliente(int id_Cliente){
+        List<Venda> lista = new ArrayList<>();
+        String sql = "select * from venda where id_cliente = " + id_Cliente;
+        try {
+            ResultSet rs = Conexao.getConexao().prepareStatement(sql).executeQuery();
+            while(rs.next()) {
+                Venda venda = new Venda();
+                venda.setId(rs.getInt("id"));
+                
+            }
+        } catch (Exception e) {
+        }
+        return lista;
+    }
+    
+    public int retornaUltimo(){
+        int retorno = -1;
+        try{
+            String sql = "select * from venda order by id desc limit 1";
+            ResultSet rs = Conexao.getConexao().prepareStatement(sql).executeQuery();
+            rs.next();
+            retorno = rs.getInt("id");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return retorno;
+    }
+    
+    public Venda achaPorId(int id){
+        Venda retorno = new Venda();
+        String sql = "select * from compra where id = "+id;
+        try { 
+            ResultSet rs = Conexao.getConexao().prepareStatement(sql).executeQuery();
+            while(rs.next()) {
+                retorno.setId(rs.getInt("id"));
+                retorno.setValor(rs.getDouble("valor"));
+                retorno.setData_venda(rs.getTimestamp("data_venda"));
+                retorno.setCliente(new DAOCliente().consultarPorId(rs.getInt("id_cliente")));
+            }
+        } catch(Exception ex) {
+            System.out.println("SQLException " + ex.getMessage());            
+        }
+        return retorno;
     }
 }
