@@ -23,7 +23,7 @@ public class DAOItensVenda {
             PreparedStatement pstm = con.getConexao().prepareStatement(sql);
             pstm.setDouble(1, itensVenda.getQuantidadeProduto());
             pstm.setInt(2, itensVenda.getVenda().getId());
-            //pstm.setInt(3, itensVenda.getProduto().getId());
+            pstm.setInt(3, itensVenda.getProduto().getId());
             
             if (pstm.executeUpdate() > 0){
                 JOptionPane.showMessageDialog(null, 
@@ -67,7 +67,7 @@ public class DAOItensVenda {
             
             pstm.setDouble(1, itensVenda.getQuantidadeProduto());
             pstm.setInt(2, itensVenda.getVenda().getId());
-            //pstm.setInt(3, itensVenda.getProduto().getId());
+            pstm.setInt(3, itensVenda.getProduto().getId());
             
             pstm.setInt(4, itensVenda.getId());
             

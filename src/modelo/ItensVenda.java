@@ -13,7 +13,7 @@ public class ItensVenda {
     private int id;
     private double quantidadeProduto;
     private Venda venda;
-    //Produto produto;
+    Produto produto;
 
     public int getId() {
         return id;
@@ -39,11 +39,11 @@ public class ItensVenda {
         this.venda = venda;
     }
     
-//    public Produto getProduto() {
-//        return produto;
-//    }
-//
-//    public void setProduto(Produto produto) {
-//        this.produto = produto;
-//    }
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
 }
