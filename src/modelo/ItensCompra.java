@@ -11,9 +11,14 @@ package modelo;
 public class ItensCompra {
     private int id;
     private double quantidade;
-    //private Produto produto;
+    private Produto produto;
     private Compra compra;
 
+    public Object[] getDadosModel(){
+        Object[] retorno = new Object[]{getId(),getQuantidade(),getCompra(),getProduto()};
+        return retorno;
+    }
+    
     public int getId() {
         return id;
     }
@@ -38,6 +43,14 @@ public class ItensCompra {
         this.compra = compra;
     }
 
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+    
     
     
 }

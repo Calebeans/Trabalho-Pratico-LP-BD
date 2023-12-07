@@ -4,6 +4,8 @@
  */
 package modelo;
 
+import java.util.Date;
+
 /**
  *
  * @author Igor
@@ -11,7 +13,13 @@ package modelo;
 public class Compra {
     private int id;
     private double valor;
-    //private Fornecedor fornecedor;
+    private Fornecedor fornecedor;
+    private Date data_requerimento;
+    
+    public Object[] getDadosModel(){
+        Object[] retorno = new Object[]{getId(),getValor(),getFornecedor(),getData_requerimento()};
+        return retorno;
+    }
 
     public int getId() {
         return id;
@@ -29,12 +37,27 @@ public class Compra {
         this.valor = valor;
     }
 
-//    public Fornecedor getFornecedor() {
-//        return fornecedor;
-//    }
-//
-//    public void setFornecedor(Fornecedor fornecedor) {
-//        this.fornecedor = fornecedor;
-//    }
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
+    }
+
+    public Date getData_requerimento() {
+        return data_requerimento;
+    }
+
+    public void setData_requerimento(Date data_requerimento) {
+        this.data_requerimento = data_requerimento;
+    }
+
+    @Override
+    public String toString() {
+        return id + " - " + data_requerimento;
+    }
+    
+    
     
 }

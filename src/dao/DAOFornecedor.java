@@ -101,7 +101,7 @@ public class DAOFornecedor {
         return lista;
     }
     
-    public List<Fornecedor> consultarTodos(String nome) {
+    public List<Fornecedor> consultarTodos() {
         List<Fornecedor> lista = new ArrayList<>();
         try {
             String sql = "select * from fornecedor";
