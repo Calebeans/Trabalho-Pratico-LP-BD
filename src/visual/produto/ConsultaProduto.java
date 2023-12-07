@@ -28,6 +28,7 @@ public class ConsultaProduto extends javax.swing.JFrame {
         botaoCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Consultar Produtos");
 
         labelNome.setText("Nome");
 

@@ -38,6 +38,7 @@ public class ConsultarItensCompra extends javax.swing.JFrame {
         botaoExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Consultar Itens da Compra");
 
         labelCompra.setText("Compra");
 

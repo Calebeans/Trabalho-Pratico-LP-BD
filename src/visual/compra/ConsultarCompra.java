@@ -43,6 +43,7 @@ public class ConsultarCompra extends javax.swing.JFrame {
         botaoConsultar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Consultar Compras");
 
         labelFornecedor.setText("Fornecedor");
 

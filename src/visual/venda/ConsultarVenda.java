@@ -57,6 +57,7 @@ public class ConsultarVenda extends javax.swing.JFrame {
         btnFechar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Consultar Vendas");
 
         lbCliente.setText("Cliente");
 
@@ -120,7 +121,7 @@ public class ConsultarVenda extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbCliente)
                             .addComponent(btnConsultar))
-                        .addGap(0, 309, Short.MAX_VALUE))
+                        .addGap(0, 321, Short.MAX_VALUE))
                     .addComponent(cbCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );

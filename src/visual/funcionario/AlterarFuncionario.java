@@ -57,6 +57,7 @@ public class AlterarFuncionario extends javax.swing.JFrame {
         labelSalario = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Alterar Funcionario");
 
         labelUf.setText("UF");
 

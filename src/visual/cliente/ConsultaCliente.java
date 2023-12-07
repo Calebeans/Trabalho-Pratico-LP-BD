@@ -32,6 +32,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
         botaoConsultarCpf = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Consultar Clientes");
 
         labelNome.setText("Nome");
 

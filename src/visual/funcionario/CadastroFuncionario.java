@@ -48,6 +48,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         comboTipoUsuario = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastrar Funcionario");
 
         labelNome.setText("Nome");
 

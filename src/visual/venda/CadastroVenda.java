@@ -59,6 +59,7 @@ public class CadastroVenda extends javax.swing.JFrame {
         btnAddVenda = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastar Venda");
 
         lbCliente.setText("Cliente");
 

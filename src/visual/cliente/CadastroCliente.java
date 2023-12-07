@@ -40,6 +40,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         botaoCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastrar Cliente");
 
         labelNome.setText("Nome");
 

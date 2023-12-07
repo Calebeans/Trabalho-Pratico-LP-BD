@@ -31,6 +31,7 @@ public class CadastroProduto extends javax.swing.JFrame {
         labelNome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastrar Produto");
 
         labelPreco.setText("Preço");
 

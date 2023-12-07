@@ -60,6 +60,7 @@ public class CadastroItensVenda extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastrar Itens na Venda");
 
         lbProduto.setText("Produto");
 

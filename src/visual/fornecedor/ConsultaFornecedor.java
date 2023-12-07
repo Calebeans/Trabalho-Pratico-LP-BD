@@ -31,6 +31,7 @@ public class ConsultaFornecedor extends javax.swing.JFrame {
         botaoConsultarCnpj = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Consultar Fornecedores");
 
         labelNome.setText("Nome");
 

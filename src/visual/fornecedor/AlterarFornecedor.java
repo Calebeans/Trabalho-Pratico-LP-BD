@@ -45,6 +45,7 @@ public class AlterarFornecedor extends javax.swing.JFrame {
         botaoCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Alterar Fornecedor");
 
         labelNome.setText("Nome");
 
