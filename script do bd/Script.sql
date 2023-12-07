@@ -175,3 +175,59 @@ insert into unidade(descricao) values ('teste');
 
 select * from compra order by id desc limit 1;
 
+/*
+	Triggers Venda
+*/
+
+create trigger insert_estoque_venda
+after insert on itens_venda
+for each row
+execute procedure f_insert_estoque_venda();
+
+create or replace function f_insert_estoque_venda()
+returns trigger
+as
+$$
+begin
+	update venda set estoque = venda.estoque + new.quantidade_produto where new.id_venda = venda.id;
+	return new;
+end;
+$$
+language 'plpgsql';
+
+create trigger update_estoque_venda
+after update on itens_venda
+for each row
+execute procedure f_update_estoque_venda();
+
+create or replace function f_update_estoque_venda()
+returns trigger
+as
+$$
+begin
+	if(new.quantidade_produto != old.quantidade_produto) then
+		update venda set estoque = venda.estoque + (new.quantidade_produto - old.quantidade_produto) where venda.id =  new.id_venda;
+		return new;
+	else
+		return new;
+	end if;
+end;
+$$
+language 'plpgsql';
+
+
+create trigger timestamp_venda
+after insert on venda
+for each row
+execute procedure f_timestamp_venda();
+
+create or replace function f_timestamp_venda()
+returns trigger
+as
+$$
+begin
+	update venda set data_venda = (select NOW()::TIMESTAMP) where id = new.id;
+	return new;
+end;
+$$
+language 'plpgsql';
