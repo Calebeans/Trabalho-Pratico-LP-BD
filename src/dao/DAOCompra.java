@@ -23,7 +23,7 @@ public class DAOCompra {
             
             PreparedStatement ps = Conexao.getConexao().prepareStatement(sql);
             ps.setDouble(1, compra.getValor());
-//            ps.setInt(2, compra.getFornecedor().getId());
+            ps.setInt(2, compra.getFornecedor().getId());
             if(ps.executeUpdate() > 0) {
                 JOptionPane.showMessageDialog(null, "Funcionario criado com sucesso");
                 return true;
@@ -47,8 +47,9 @@ public class DAOCompra {
                 Compra compra = new Compra();
                 compra.setId(rs.getInt("id"));
                 compra.setValor(rs.getDouble("valor"));
-//                compra.setFornecedor(DAOFornecedor.achaPorId(rs.getInt("id_fornecedor")))
-            retorno.add(compra);
+                compra.setFornecedor(new DAOFornecedor().consultarPorId(rs.getInt("id_fornecedor")));
+                compra.setData_requerimento(rs.getTimestamp("data_requerimento"));
+                retorno.add(compra);
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -56,5 +57,77 @@ public class DAOCompra {
         return retorno;
     }
     
+    public List<Compra> consultaPorFornecedor(int id_fornecedor){
+        List<Compra> lista = new ArrayList<>();
+        String sql = "select * from compra where id_fornecedor = "+id_fornecedor;
+        try { 
+            ResultSet rs = Conexao.getConexao().prepareStatement(sql).executeQuery();
+            while(rs.next()) {
+                Compra compra = new Compra();
+                compra.setId(rs.getInt("id"));
+                compra.setValor(rs.getDouble("valor"));
+                compra.setFornecedor(new DAOFornecedor().consultarPorId(rs.getInt("id_fornecedor")));
+                compra.setData_requerimento(rs.getTimestamp("data_requerimento"));
+                lista.add(compra);
+            }
+        } catch(Exception ex) {
+            System.out.println("SQLException " + ex.getMessage());            
+        }     
+        return lista;
+    }
     
+    public Compra achaPorId(int id){
+        Compra retorno = new Compra();
+        String sql = "select * from compra where id = "+id;
+        try { 
+            ResultSet rs = Conexao.getConexao().prepareStatement(sql).executeQuery();
+            while(rs.next()) {
+                retorno.setId(rs.getInt("id"));
+                retorno.setValor(rs.getDouble("valor"));
+                retorno.setFornecedor(new DAOFornecedor().consultarPorId(rs.getInt("id_fornecedor")));
+                retorno.setData_requerimento(rs.getTimestamp("data_requerimento"));
+            }
+        } catch(Exception ex) {
+            System.out.println("SQLException " + ex.getMessage());            
+        }
+        return retorno;
+    }
+    
+    public boolean deletar(int id) {
+        try {
+            String sql = "delete from compra where id = ?";
+            PreparedStatement ps = Conexao.getConexao().prepareStatement(sql);
+            ps.setInt(1, id);
+            if(ps.executeUpdate() > 0) {
+                JOptionPane.showMessageDialog(null, "Compra exluida com sucesso");
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro");
+                return false;
+            }
+        } catch(Exception ex) {
+            System.out.println("SQLException " + ex.getMessage());
+            return false;
+        }
+    }
+    
+    public boolean alterar(Compra compra){
+        try{
+            String sql = "update compra set valor = ?, id_fornecedor = ? where id = ?";
+            PreparedStatement ps = Conexao.getConexao().prepareStatement(sql);
+            ps.setDouble(1, compra.getValor());
+            ps.setInt(2, compra.getFornecedor().getId());
+            ps.setInt(3, compra.getId());
+            if(ps.executeUpdate() > 0) {
+                JOptionPane.showMessageDialog(null, "Compra alterada com sucesso");
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro");
+                return false;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

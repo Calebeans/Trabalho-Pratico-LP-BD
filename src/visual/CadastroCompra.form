@@ -26,20 +26,24 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="comboProduto" max="32767" attributes="0"/>
-                  <Component id="campoQuantidade" alignment="0" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="labelProduto" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelQuantidade" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="comboFornecedor" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="197" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="botaoIncluir" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="botaoCancelar" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="labelFornecedor" min="-2" max="-2" attributes="0"/>
+                          <Component id="botaoIdC" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="labelTagValor" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="labelValor" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="0" pref="187" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -49,18 +53,21 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-              <Component id="labelProduto" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="comboProduto" min="-2" max="-2" attributes="0"/>
+              <Component id="labelFornecedor" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="labelQuantidade" min="-2" max="-2" attributes="0"/>
+              <Component id="comboFornecedor" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="campoQuantidade" min="-2" max="-2" attributes="0"/>
+              <Component id="botaoIdC" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="botaoIncluir" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelTagValor" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelValor" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="botaoCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botaoIncluir" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -68,7 +75,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JComboBox" name="comboProduto">
+    <Component class="javax.swing.JComboBox" name="comboFornecedor">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -83,20 +90,28 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelProduto">
+    <Component class="javax.swing.JLabel" name="labelFornecedor">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Produto"/>
+        <Property name="text" type="java.lang.String" value="Fornecedor"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelQuantidade">
+    <Component class="javax.swing.JButton" name="botaoIdC">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Quantidade"/>
+        <Property name="text" type="java.lang.String" value="Adicionar Itens a Compra"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="campoQuantidade">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoQuantidadeActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoIdCActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelTagValor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Valor:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelValor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel3"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="botaoCancelar">
       <Properties>
